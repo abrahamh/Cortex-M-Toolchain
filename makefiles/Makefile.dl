@@ -1,0 +1,74 @@
+#
+# Makefile - download required source if required
+# Copyright (C) 2015-2016 Heiko Abraham
+# All rights reserved.
+#
+
+include Makefile.def
+
+ifneq ($(MK_PROXY_HTTP),)
+  PROXY_SETTINGS_HTTP=http_proxy:=$(MK_PROXY_HTTP)
+endif
+ifneq ($(MK_PROXY_HTTPS),)
+  PROXY_SETTINGS_HTTPS=https_proxy:=$(MK_PROXY_HTTPS)
+endif
+ifneq ($(MK_PROXY_FTP),)
+  PROXY_SETTINGS_FTP=ftp_proxy:=$(MK_PROXY_FTP)
+endif
+PROXY_SETTINGS := $(PROXY_SETTINGS_HTTP) $(PROXY_SETTINGS_HTTPS) $(PROXY_SETTINGS_FTP)
+
+DOWNLOAD_CMD :=	cd $(DOWNLOAD_DIR) && \
+				$(RM) -f tempfile && $(PROXY_SETTINGS) curl --progress-bar -L -o tempfile
+
+
+.PHONY: all
+all: $(DOWNLOAD_DIR)/
+	$(MAKE) -f $(MAKEFILENAME) $(DOWNLOAD_DIR)/$(BINUTIL_VERSION).tar.bz2
+	$(MAKE) -f $(MAKEFILENAME) $(DOWNLOAD_DIR)/$(CMAKE_VERSION).tar.gz
+	$(MAKE) -f $(MAKEFILENAME) $(DOWNLOAD_DIR)/$(XZ_VERSION).tar.bz2
+	$(MAKE) -f $(MAKEFILENAME) $(DOWNLOAD_DIR)/$(LLVM_VERSION).tar.xz
+	$(MAKE) -f $(MAKEFILENAME) $(DOWNLOAD_DIR)/$(CLANG_VERSION).tar.xz
+	$(MAKE) -f $(MAKEFILENAME) $(DOWNLOAD_DIR)/$(COMPILER_RT_VERSION).tar.xz
+	$(MAKE) -f $(MAKEFILENAME) $(DOWNLOAD_DIR)/$(LLDB_VERSION).tar.xz
+
+
+.PHONY: clean
+clean:
+	rm -f $(DOWNLOAD_DIR)/tempfile
+
+
+.PHONY: install
+install:
+
+
+$(DOWNLOAD_DIR)/:
+	mkdir -p $(DOWNLOAD_DIR)/
+
+
+$(DOWNLOAD_DIR)/$(BINUTIL_VERSION).tar.bz2: $(DOWNLOAD_DIR)/
+	$(DOWNLOAD_CMD) http://mirrors.kernel.org/gnu/binutils/$(BINUTIL_VERSION).tar.bz2
+	mv $(DOWNLOAD_DIR)/tempfile $@
+
+$(DOWNLOAD_DIR)/$(CMAKE_VERSION).tar.gz:
+	$(DOWNLOAD_CMD)  https://cmake.org/files/v3.5/$(CMAKE_VERSION).tar.gz
+	mv $(DOWNLOAD_DIR)/tempfile $@
+
+$(DOWNLOAD_DIR)/$(XZ_VERSION).tar.bz2:
+	$(DOWNLOAD_CMD) http://tukaani.org/xz/$(XZ_VERSION).tar.bz2
+	mv $(DOWNLOAD_DIR)/tempfile $@
+
+$(DOWNLOAD_DIR)/$(LLVM_VERSION).tar.xz:
+	$(DOWNLOAD_CMD) http://llvm.org/releases/$(LLVM_VERSION_NO)/$(LLVM_VERSION).src.tar.xz
+	mv $(DOWNLOAD_DIR)/tempfile $@
+
+$(DOWNLOAD_DIR)/$(CLANG_VERSION).tar.xz:
+	$(DOWNLOAD_CMD) http://llvm.org/releases/$(LLVM_VERSION_NO)/$(CLANG_VERSION_NO).src.tar.xz
+	mv $(DOWNLOAD_DIR)/tempfile $@
+
+$(DOWNLOAD_DIR)/$(COMPILER_RT_VERSION).tar.xz:
+	$(DOWNLOAD_CMD) http://llvm.org/releases/$(LLVM_VERSION_NO)/$(COMPILER_RT_VERSION).src.tar.xz
+	mv $(DOWNLOAD_DIR)/tempfile $@
+
+$(DOWNLOAD_DIR)/$(LLDB_VERSION).tar.xz:
+	$(DOWNLOAD_CMD) http://llvm.org/releases/$(LLVM_VERSION_NO)/$(LLDB_VERSION).src.tar.xz
+	mv $(DOWNLOAD_DIR)/tempfile $@
