@@ -1,0 +1,50 @@
+#
+# Makefile - build binutils
+# Copyright (C) 2015-2016 Heiko Abraham
+# All rights reserved.
+#
+
+include Makefile.def
+
+TARGET=arm-none-eabi
+SYSROOT_PREFIX:=$(PREFIX)
+
+.PHONY: build
+build:
+	env
+	$(MAKE) -f $(MAKEFILENAME) $(PREFIX)/bin/$(TARGET)-ld
+
+
+.PHONY: clean
+clean:
+	$(RM) -f $(PREFIX)/bin/$(TARGET)-ld
+
+
+.PHONY: install
+install:
+
+
+$(PREFIX)/bin/$(TARGET)-ld: $(MAKEFILE_LIST)
+	$(MAKE) -f $(MAKEFILENAME) build_binutils
+
+
+.PHONY: build_binutils
+build_binutils: $(BUILD_DIR)
+	$(RM) -rf $(BUILD_DIR)/$(BINUTIL_VERSION)
+	tar -xjf $(DOWNLOAD_DIR)/$(BINUTIL_VERSION).tar.bz2 -C  $(BUILD_DIR)
+	( cd $(BUILD_DIR)/$(BINUTIL_VERSION)  &&  CFLAGS="-w " \
+	./configure \
+		--target=$(TARGET) \
+		--prefix=$(PREFIX) \
+		--disable-shared \
+		--disable-werror \
+		--disable-nls \
+		--disable-threads \
+		--enable-interwork \
+		--enable-multilib \
+		--enable-lto \
+		--with-local-prefix=$(SYSROOT_PREFIX)/$(TARGET) \
+		--with-sysroot=$(SYSROOT_PREFIX)/$(TARGET)  )
+	( cd $(BUILD_DIR)/$(BINUTIL_VERSION)  && $(MAKE) $(MJOBS) )
+	( cd $(BUILD_DIR)/$(BINUTIL_VERSION)  && $(MAKE) install )
+

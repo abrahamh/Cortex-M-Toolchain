@@ -1,5 +1,5 @@
 #
-# Makefile - build xzcat
+# Makefile - build cmake
 # Copyright (C) 2015-2016 Heiko Abraham
 # All rights reserved.
 #

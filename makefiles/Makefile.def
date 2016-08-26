@@ -28,12 +28,12 @@ DOWNLOAD_DIR:=../download-cache
 BUILD_DIR:=$(CURRENT_DIR)/../builddir
 PREFIX_HOST:=$(BUILD_DIR)/usr-host
 TOOLCHAIN_BUNDLE_NAME:=CortexM_V1.0.xctoolchain
-
+PREFIX:=$(BUILD_DIR)/$(TOOLCHAIN_BUNDLE_NAME)/usr
 
 #
 # prepend own tools to path
 #
-PATH_EXT=PATH=$(PREFIX_HOST)/bin:$(PATH)
+PATH_EXT=PATH=$(PREFIX_HOST)/bin:$(PREFIX)/bin:$(PATH)
 
 
 #
@@ -58,6 +58,9 @@ LLDB_VERSION:=lldb-$(LLVM_VERSION_NO)
 
 all: build
 
+
+$(PREFIX)/:
+	$(MKDIR) -p $(PREFIX)/
 
 $(BUILD_DIR)/:
 	$(MKDIR) -p $(BUILD_DIR)/
