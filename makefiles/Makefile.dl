@@ -21,8 +21,8 @@ DOWNLOAD_CMD :=	cd $(DOWNLOAD_DIR) && \
 				$(RM) -f tempfile && $(PROXY_SETTINGS) curl --progress-bar -L -o tempfile
 
 
-.PHONY: all
-all: $(DOWNLOAD_DIR)/
+.PHONY: build
+build: $(DOWNLOAD_DIR)/
 	$(MAKE) -f $(MAKEFILENAME) $(DOWNLOAD_DIR)/$(BINUTIL_VERSION).tar.bz2
 	$(MAKE) -f $(MAKEFILENAME) $(DOWNLOAD_DIR)/$(CMAKE_VERSION).tar.gz
 	$(MAKE) -f $(MAKEFILENAME) $(DOWNLOAD_DIR)/$(XZ_VERSION).tar.bz2
@@ -34,7 +34,7 @@ all: $(DOWNLOAD_DIR)/
 
 .PHONY: clean
 clean:
-	rm -f $(DOWNLOAD_DIR)/tempfile
+	$(RM) -f $(DOWNLOAD_DIR)/tempfile
 
 
 .PHONY: install
@@ -42,10 +42,10 @@ install:
 
 
 $(DOWNLOAD_DIR)/:
-	mkdir -p $(DOWNLOAD_DIR)/
+	$(MKDIR) -p $(DOWNLOAD_DIR)/
 
 
-$(DOWNLOAD_DIR)/$(BINUTIL_VERSION).tar.bz2: $(DOWNLOAD_DIR)/
+$(DOWNLOAD_DIR)/$(BINUTIL_VERSION).tar.bz2:
 	$(DOWNLOAD_CMD) http://mirrors.kernel.org/gnu/binutils/$(BINUTIL_VERSION).tar.bz2
 	mv $(DOWNLOAD_DIR)/tempfile $@
 
@@ -62,7 +62,7 @@ $(DOWNLOAD_DIR)/$(LLVM_VERSION).tar.xz:
 	mv $(DOWNLOAD_DIR)/tempfile $@
 
 $(DOWNLOAD_DIR)/$(CLANG_VERSION).tar.xz:
-	$(DOWNLOAD_CMD) http://llvm.org/releases/$(LLVM_VERSION_NO)/$(CLANG_VERSION_NO).src.tar.xz
+	$(DOWNLOAD_CMD) http://llvm.org/releases/$(LLVM_VERSION_NO)/$(CLANG_VERSION).src.tar.xz
 	mv $(DOWNLOAD_DIR)/tempfile $@
 
 $(DOWNLOAD_DIR)/$(COMPILER_RT_VERSION).tar.xz:

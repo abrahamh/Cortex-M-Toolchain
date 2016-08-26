@@ -1,0 +1,43 @@
+#
+# Makefile - build xzcat
+# Copyright (C) 2015-2016 Heiko Abraham
+# All rights reserved.
+#
+
+include Makefile.def
+
+
+.PHONY: build
+build:
+	env
+	$(MAKE) -f $(MAKEFILENAME) $(PREFIX_HOST)/bin/xzcat
+
+
+.PHONY: clean
+clean:
+	$(RM) -f $(PREFIX_HOST)/bin/xzcat
+
+
+.PHONY: install
+install:
+
+$(PREFIX_HOST)/bin/xzcat: $(MAKEFILE_LIST)
+	$(MAKE) -f $(MAKEFILENAME) build_host_xzcat
+
+
+.PHONY: build_host_xzcat
+build_host_xzcat: $(BUILD_DIR)
+	$(RM) -rf $(BUILD_DIR)/$(XZ_VERSION)
+	tar -xjf $(DOWNLOAD_DIR)/$(XZ_VERSION).tar.bz2  -C $(BUILD_DIR)
+	( cd $(BUILD_DIR)/$(XZ_VERSION) && CFLAGS="-w " ./configure \
+	--prefix=$(PREFIX_HOST) \
+	--enable-static \
+	--disable-shared \
+	--disable-xzdec \
+	--disable-lzmadec \
+	--disable-lzmainfo \
+	--disable-scripts )
+	( cd $(BUILD_DIR)/$(XZ_VERSION) && $(MAKE) $(MJOBS) )
+	( cd $(BUILD_DIR)/$(XZ_VERSION) && $(MAKE) install )
+	( cd $(PREFIX_HOST)/share/ && $(RM) -rf doc man )
+	$(RM) -rf $(BUILD_DIR)/$(XZ_VERSION)

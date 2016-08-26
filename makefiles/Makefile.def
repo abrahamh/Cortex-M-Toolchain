@@ -11,22 +11,41 @@ ifeq ($(MAKEFILENAME),)
 MAKEFILENAME := $(firstword $(MAKEFILE_LIST))
 endif
 
+#
 # detect number of CPUs usable for make jobs
+#
 NUM_CPUS=$(shell sysctl -n hw.ncpu)
 MJOBS=-j$(NUM_CPUS)
 
-RM=rm
+RM=/bin/rm
+MKDIR=/bin/mkdir
 
-DOWNLOAD_DIR=$(PROJECT_DIR)/download-cache
+
+#
+# define project directories
+#
+DOWNLOAD_DIR:=../download-cache
+BUILD_DIR:=$(CURRENT_DIR)/../builddir
+PREFIX_HOST:=$(BUILD_DIR)/usr-host
+TOOLCHAIN_BUNDLE_NAME:=CortexM_V1.0.xctoolchain
 
 
+#
+# prepend own tools to path
+#
+PATH_EXT=PATH=$(PREFIX_HOST)/bin:$(PATH)
+
+
+#
+# define source versions
+#
 BINUTIL_VERSION_NO:=2.27
 BINUTIL_VERSION:=binutils-$(BINUTIL_VERSION_NO)
 
 CMAKE_VERSION_NO:=3.5.2
 CMAKE_VERSION:=cmake-$(CMAKE_VERSION_NO)
 
-XZ_VERSION_NO:=5.0.4
+XZ_VERSION_NO:=5.2.2
 XZ_VERSION:=xz-$(XZ_VERSION_NO)
 
 LLVM_VERSION_NO:=3.8.1
@@ -34,3 +53,13 @@ LLVM_VERSION:=llvm-$(LLVM_VERSION_NO)
 CLANG_VERSION:=cfe-$(LLVM_VERSION_NO)
 COMPILER_RT_VERSION:=compiler-rt-$(LLVM_VERSION_NO)
 LLDB_VERSION:=lldb-$(LLVM_VERSION_NO)
+
+
+
+all: build
+
+
+$(BUILD_DIR)/:
+	$(MKDIR) -p $(BUILD_DIR)/
+	# xattr -w com.apple.metadata:comapple_backupexcludeItem com.apple.backupd <filename>
+	# com.apple.metadata:com_apple_backup_excludeItem
