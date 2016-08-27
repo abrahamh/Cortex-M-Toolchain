@@ -1,0 +1,20 @@
+#
+# Makefile - clean all
+# Copyright (C) 2016 Heiko Abraham
+# All rights reserved.
+#
+
+include Makefile.def
+
+.PHONY: build
+build:
+
+
+.PHONY: clean
+clean:
+	$(RM) -f $(PREFIX)/bin/$(TARGET)-ld
+	$(RM) -rf $(BUILD_DIR)
+
+
+.PHONY: install
+install:
