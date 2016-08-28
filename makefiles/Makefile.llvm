@@ -1,0 +1,93 @@
+#
+# Makefile - create llvm/clang
+# Copyright (C) 2015-2016 Heiko Abraham
+# All rights reserved.
+#
+
+include Makefile.def
+
+TARGET=arm-none-eabi
+
+.PHONY: build
+build:
+	$(MAKE) -f $(MAKEFILENAME) $(PREFIX)/bin/$(TARGET)-clang
+
+
+.PHONY: clean
+clean:
+	$(RM) -f $(PREFIX)/bin/$(TARGET)-clang
+	$(RM) -rf    $(BUILD_DIR)/$(LLVM_VERSION)
+	$(RM) -rf    $(BUILD_DIR)/$(LLVM_VERSION).src
+	$(RM) -rf    $(BUILD_DIR)/$(LLVM_VERSION).build
+
+
+.PHONY: install
+install:
+
+
+$(PREFIX)/bin/$(TARGET)-clang:
+	$(MAKE) -f $(MAKEFILENAME) build_clang
+
+
+.PHONY: extract_clang
+extract_clang:
+	( cd $(BUILD_DIR)/$(LLVM_VERSION).src/tools/ && $(RM) -rf $(CLANG_VERSION) )
+	( cd $(BUILD_DIR)/$(LLVM_VERSION).src/tools/ && $(RM) -rf $(CLANG_VERSION).src )
+	$(PATH_EXT) xz --decompress --stdout $(DOWNLOAD_DIR)/$(CLANG_VERSION).tar.xz | \
+		tar -x -C $(BUILD_DIR)/$(LLVM_VERSION).src/tools/
+	( cd $(BUILD_DIR)/$(LLVM_VERSION).src/tools && mv $(CLANG_VERSION).src clang )
+
+
+# fix concurency build errors
+.PHONY: build_fix_mkdir_error
+build_fix_mkdir_error:
+	$(MKDIR) -p $(BUILD_DIR)/$(LLVM_VERSION).build/lib/Support/Release
+	$(MKDIR) -p $(BUILD_DIR)/$(LLVM_VERSION).build/lib/TableGen/Release
+	$(MKDIR) -p $(BUILD_DIR)/$(LLVM_VERSION).build/lib/IR/Release
+	$(MKDIR) -p $(BUILD_DIR)/$(LLVM_VERSION).build/tools/llvm-shlib/Release
+	$(MKDIR) -p $(BUILD_DIR)/$(LLVM_VERSION).build/tools/llvm-config/Release
+	$(MKDIR) -p $(BUILD_DIR)/$(LLVM_VERSION).build/Release/bin
+	$(MKDIR) -p $(BUILD_DIR)/$(LLVM_VERSION).build/tools/clang/lib/StaticAnalyzer/Frontend/Release
+	$(MKDIR) -p $(BUILD_DIR)/$(LLVM_VERSION).build/tools/clang/tools/c-index-test/Release
+	$(MKDIR) -p $(BUILD_DIR)/$(LLVM_VERSION).build/tools/clang/tools/c-arcmt-test/Release
+	$(MKDIR) -p $(BUILD_DIR)/$(LLVM_VERSION).build/tools/clang/utils/TableGen/Release
+	$(MKDIR) -p $(BUILD_DIR)/$(LLVM_VERSION).build/utils/yaml-bench/Release
+
+
+.PHONY: build_clang
+build_clang: $(BUILD_DIR)
+	env
+	$(RM) -rf    $(BUILD_DIR)/$(LLVM_VERSION)
+	$(RM) -rf    $(BUILD_DIR)/$(LLVM_VERSION).src
+	$(RM) -rf    $(BUILD_DIR)/$(LLVM_VERSION).build
+	$(MKDIR) -p  $(BUILD_DIR)/$(LLVM_VERSION).build
+	$(PATH_EXT) xz --decompress --stdout $(DOWNLOAD_DIR)/$(LLVM_VERSION).tar.xz |\
+		tar -x -C $(BUILD_DIR)
+	$(MAKE) -f $(MAKEFILENAME) extract_clang
+	$(MAKE) -f $(MAKEFILENAME) build_fix_mkdir_error
+	( cd $(BUILD_DIR)/$(LLVM_VERSION).build && \
+		$(PATH_EXT) ac_cv_path_MKDIR='/bin/mkdir -p' \
+		../$(LLVM_VERSION).src/configure \
+		--prefix=$(PREFIX) \
+		--target=$(TARGET) \
+		--enable-targets=arm \
+		--disable-assertions \
+		--enable-optimized \
+		--disable-profiling \
+		--disable-clang-plugin-support \
+		--enable-clang-static-analyzer \
+		--disable-polly \
+		--disable-jit \
+		--disable-compiler-version-checks \
+		--with-binutils-include=$(BUILD_DIR)/$(BINUTIL_VERSION)/include \
+		--enable-shared \
+		--disable-static \
+		--enable-threads \
+		--enable-pthreads \
+		--disable-doxygen \
+		--disable-docs \
+		--disable-backtraces \
+		--without-python )
+	( cd $(BUILD_DIR)/$(LLVM_VERSION).build && $(BLD_PATH) make $(MJOBS) )
+	( cd $(BUILD_DIR)/$(LLVM_VERSION).build && $(BLD_PATH) make install ; exit 0 )
+	$(RM) -rf $(PREFIX_TOOLCHAIN_DIR)/usr/lib/libLTO.dylib
