@@ -16,6 +16,7 @@ build:
 .PHONY: clean
 clean:
 	$(RM) -f $(PREFIX_HOST)/bin/xzcat
+	$(RM) -rf $(BUILD_DIR)/$(XZ_VERSION)
 
 
 .PHONY: install
@@ -40,4 +41,3 @@ build_host_xzcat: $(BUILD_DIR)
 	( cd $(BUILD_DIR)/$(XZ_VERSION) && $(MAKE) $(MJOBS) )
 	( cd $(BUILD_DIR)/$(XZ_VERSION) && $(MAKE) install )
 	( cd $(PREFIX_HOST)/share/ && $(RM) -rf doc man )
-	$(RM) -rf $(BUILD_DIR)/$(XZ_VERSION)

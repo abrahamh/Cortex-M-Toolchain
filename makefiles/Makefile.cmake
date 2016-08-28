@@ -15,6 +15,7 @@ build:
 .PHONY: clean
 clean:
 	$(RM) -f $(PREFIX_HOST)/bin/cmake
+	$(RM) -rf $(BUILD_DIR)/$(CMAKE_VERSION)
 
 
 .PHONY: install
@@ -36,4 +37,3 @@ build_host_cmake: $(BUILD_DIR)
 		--parallel=$(NUM_CPUS) )
 	( cd $(BUILD_DIR)/$(CMAKE_VERSION) && $(MAKE) $(MJOBS) )
 	( cd $(BUILD_DIR)/$(CMAKE_VERSION) && $(MAKE) install )
-	$(RM) -rf $(BUILD_DIR)/$(CMAKE_VERSION)

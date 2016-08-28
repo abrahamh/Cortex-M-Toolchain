@@ -18,6 +18,7 @@ build:
 .PHONY: clean
 clean:
 	$(RM) -f $(PREFIX)/bin/$(TARGET)-ld
+	$(RM) -rf $(BUILD_DIR)/$(BINUTIL_VERSION)
 
 
 .PHONY: install
