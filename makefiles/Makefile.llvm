@@ -38,22 +38,6 @@ extract_clang:
 	( cd $(BUILD_DIR)/$(LLVM_VERSION).src/tools && mv $(CLANG_VERSION).src clang )
 
 
-# fix concurency build errors
-.PHONY: build_fix_mkdir_error
-build_fix_mkdir_error:
-	$(MKDIR) -p $(BUILD_DIR)/$(LLVM_VERSION).build/lib/Support/Release
-	$(MKDIR) -p $(BUILD_DIR)/$(LLVM_VERSION).build/lib/TableGen/Release
-	$(MKDIR) -p $(BUILD_DIR)/$(LLVM_VERSION).build/lib/IR/Release
-	$(MKDIR) -p $(BUILD_DIR)/$(LLVM_VERSION).build/tools/llvm-shlib/Release
-	$(MKDIR) -p $(BUILD_DIR)/$(LLVM_VERSION).build/tools/llvm-config/Release
-	$(MKDIR) -p $(BUILD_DIR)/$(LLVM_VERSION).build/Release/bin
-	$(MKDIR) -p $(BUILD_DIR)/$(LLVM_VERSION).build/tools/clang/lib/StaticAnalyzer/Frontend/Release
-	$(MKDIR) -p $(BUILD_DIR)/$(LLVM_VERSION).build/tools/clang/tools/c-index-test/Release
-	$(MKDIR) -p $(BUILD_DIR)/$(LLVM_VERSION).build/tools/clang/tools/c-arcmt-test/Release
-	$(MKDIR) -p $(BUILD_DIR)/$(LLVM_VERSION).build/tools/clang/utils/TableGen/Release
-	$(MKDIR) -p $(BUILD_DIR)/$(LLVM_VERSION).build/utils/yaml-bench/Release
-
-
 .PHONY: build_clang
 build_clang: $(BUILD_DIR)
 	env
@@ -64,30 +48,36 @@ build_clang: $(BUILD_DIR)
 	$(PATH_EXT) xz --decompress --stdout $(DOWNLOAD_DIR)/$(LLVM_VERSION).tar.xz |\
 		tar -x -C $(BUILD_DIR)
 	$(MAKE) -f $(MAKEFILENAME) extract_clang
-	$(MAKE) -f $(MAKEFILENAME) build_fix_mkdir_error
 	( cd $(BUILD_DIR)/$(LLVM_VERSION).build && \
-		$(PATH_EXT) ac_cv_path_MKDIR='/bin/mkdir -p' \
-		../$(LLVM_VERSION).src/configure \
-		--prefix=$(PREFIX) \
-		--target=$(TARGET) \
-		--enable-targets=arm \
-		--disable-assertions \
-		--enable-optimized \
-		--disable-profiling \
-		--disable-clang-plugin-support \
-		--enable-clang-static-analyzer \
-		--disable-polly \
-		--disable-jit \
-		--disable-compiler-version-checks \
-		--with-binutils-include=$(BUILD_DIR)/$(BINUTIL_VERSION)/include \
-		--enable-shared \
-		--disable-static \
-		--enable-threads \
-		--enable-pthreads \
-		--disable-doxygen \
-		--disable-docs \
-		--disable-backtraces \
-		--without-python )
-	( cd $(BUILD_DIR)/$(LLVM_VERSION).build && $(BLD_PATH) make $(MJOBS) )
-	( cd $(BUILD_DIR)/$(LLVM_VERSION).build && $(BLD_PATH) make install ; exit 0 )
-	$(RM) -rf $(PREFIX_TOOLCHAIN_DIR)/usr/lib/libLTO.dylib
+		$(PATH_EXT) cmake ../$(LLVM_VERSION).src \
+		-G "Unix Makefiles" \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_INSTALL_PREFIX=$(PREFIX) \
+		-DCMAKE_PREFIX_PATH=$(PREFIX)/prefix_path \
+		-DCMAKE_CROSSCOMPILING=True \
+		-DLLVM_TARGETS_TO_BUILD=ARM \
+		-DLLVM_DEFAULT_TARGET_TRIPLE=$(TARGET) \
+		-DCMAKE_PROGRAM_PREFIX=$(TARGET)- \
+		-DLLVM_TARGET_ARCH=host \
+		-DLLVM_ENABLE_PIC=True \
+		-DLLVM_ENABLE_THREADS=ON \
+		-DLLVM_ENABLE_ASSERTIONS:BOOL=OFF \
+		-DLLVM_ENABLE_CXX1Y:BOOL=ON \
+		-DLLVM_BUILD_DOCS=Off \
+		-DLLVM_BUILD_LLVM_DYLIB=ON \
+		-DLLVM_LINK_LLVM_DYLIB=ON \
+		-DLLVM_CREATE_XCODE_TOOLCHAIN:BOOL=OFF \
+		-DLLVM_OPTIMIZED_TABLEGEN:BOOL=ON \
+		-DLLVM_PARALLEL_COMPILE_JOBS:STRING=$(NUM_CPUS) )
+	( cd $(BUILD_DIR)/$(LLVM_VERSION).build && \
+		$(PATH_EXT) time make $(MJOBS) )
+	( cd $(BUILD_DIR)/$(LLVM_VERSION).build && \
+		$(PATH_EXT) time make install )
+
+
+# https://github.com/sushihangover/llvm_baremetal/tree/master/scripts
+# -DCMAKE_INSTALL_PREFIX="$TARGET_ROOT/$TARGET_TRIPLE"
+# -DCMAKE_PREFIX_PATH=$TARGET_ROOT
+# -DGCC_INSTALL_PREFIX="$TARGET_ROOT/$TARGET_TRIPLE"
+# LLVM_EXTERNAL_{CLANG,LLD,POLLY}_SOURCE_DIR:PATH
+

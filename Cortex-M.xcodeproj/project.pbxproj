@@ -70,6 +70,13 @@
 			remoteGlobalIDString = 428964C11D6CF2590018DCA7;
 			remoteInfo = xzcat;
 		};
+		42879AF11D74DBD70013320B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4272BD001D6A55730066C2EC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 427C84691D70DAF500613D42;
+			remoteInfo = cmake;
+		};
 		428964C51D6CF2880018DCA7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4272BD001D6A55730066C2EC /* Project object */;
@@ -165,13 +172,14 @@
 		};
 		427CCE9F1D718E6A00D2C716 /* llvm */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "-f Makefile.all $(ACTION)";
+			buildArgumentsString = "-f Makefile.llvm $(ACTION)";
 			buildConfigurationList = 427CCEA01D718E6A00D2C716 /* Build configuration list for PBXLegacyTarget "llvm" */;
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
 			buildWorkingDirectory = makefiles;
 			dependencies = (
+				42879AF21D74DBD70013320B /* PBXTargetDependency */,
 				427CCEAA1D718E9100D2C716 /* PBXTargetDependency */,
 				427CCEA61D718E8900D2C716 /* PBXTargetDependency */,
 				427CCEA41D718E8500D2C716 /* PBXTargetDependency */,
@@ -303,6 +311,11 @@
 			isa = PBXTargetDependency;
 			target = 428964C11D6CF2590018DCA7 /* xzcat */;
 			targetProxy = 427CCEA91D718E9100D2C716 /* PBXContainerItemProxy */;
+		};
+		42879AF21D74DBD70013320B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 427C84691D70DAF500613D42 /* cmake */;
+			targetProxy = 42879AF11D74DBD70013320B /* PBXContainerItemProxy */;
 		};
 		428964C61D6CF2880018DCA7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
