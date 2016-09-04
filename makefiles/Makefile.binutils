@@ -12,7 +12,7 @@ SYSROOT_PREFIX:=$(PREFIX)
 .PHONY: build
 build:
 	env
-	$(MAKE) -f $(MAKEFILENAME) $(PREFIX)/bin/$(TARGET)-ld
+	$(MAKE) -f $(MAKEFILENAME) CVER=$(CVER) $(PREFIX)/bin/$(TARGET)-ld
 
 
 .PHONY: clean
@@ -26,7 +26,7 @@ install:
 
 
 $(PREFIX)/bin/$(TARGET)-ld: $(MAKEFILE_LIST)
-	$(MAKE) -f $(MAKEFILENAME) build_binutils
+	$(MAKE) -f $(MAKEFILENAME) CVER=$(CVER) build_binutils
 
 
 .PHONY: build_binutils

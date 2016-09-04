@@ -9,7 +9,7 @@ include Makefile.def
 .PHONY: build
 build:
 	env
-	$(MAKE) -f $(MAKEFILENAME) $(PREFIX_HOST)/bin/cmake
+	$(MAKE) -f $(MAKEFILENAME) CVER=$(CVER) $(PREFIX_HOST)/bin/cmake
 
 
 .PHONY: clean
@@ -23,7 +23,7 @@ install:
 
 
 $(PREFIX_HOST)/bin/cmake: $(MAKEFILE_LIST)
-	$(MAKE) -f $(MAKEFILENAME) build_host_cmake
+	$(MAKE) -f $(MAKEFILENAME) CVER=$(CVER) build_host_cmake
 
 
 .PHONY: build_host_cmake

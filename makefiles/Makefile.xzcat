@@ -23,7 +23,7 @@ clean:
 install:
 
 $(PREFIX_HOST)/bin/xzcat: $(MAKEFILE_LIST)
-	$(MAKE) -f $(MAKEFILENAME) build_host_xzcat
+	$(MAKE) -f $(MAKEFILENAME) CVER=$(CVER) build_host_xzcat
 
 
 .PHONY: build_host_xzcat

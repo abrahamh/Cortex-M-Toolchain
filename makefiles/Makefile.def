@@ -27,7 +27,10 @@ MKDIR=/bin/mkdir
 DOWNLOAD_DIR:=../download-cache
 BUILD_DIR:=$(CURRENT_DIR)/../builddir
 PREFIX_HOST:=$(BUILD_DIR)/usr-host
-TOOLCHAIN_BUNDLE_NAME:=CortexM_V1.0.xctoolchain
+ifeq ($(CVER),)
+  CVER:=1.0
+endif
+TOOLCHAIN_BUNDLE_NAME:=CortexM_V$(CVER).xctoolchain
 PREFIX:=$(BUILD_DIR)/$(TOOLCHAIN_BUNDLE_NAME)/usr
 
 #

@@ -11,7 +11,7 @@
 	<key>CompatibilityVersion</key>
 	<integer>1</integer>
 	<key>DisplayName</key>
-	<string>CortexM Toolchain Version 1.0</string>
+	<string>CortexM Toolchain Version @VERSION@</string>
 	<key>OverrideBuildSettings</key>
 	<dict>
 		<key>ENABLE_BITCODE</key>
@@ -24,6 +24,6 @@
 	<key>ShortDisplayName</key>
 	<string>Cortex-M Toolchain</string>
 	<key>Version</key>
-	<string>1.0.2016090301</string>
+	<string>@VERSION@.2016090301</string>
 </dict>
 </plist>

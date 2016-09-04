@@ -57,8 +57,8 @@ build_clang: $(BUILD_DIR)
 	$(MKDIR) -p  $(BUILD_DIR)/$(LLVM_VERSION).build
 	$(PATH_EXT) xz --decompress --stdout $(DOWNLOAD_DIR)/$(LLVM_VERSION).tar.xz |\
 		tar -x -C $(BUILD_DIR)
-	$(MAKE) -f $(MAKEFILENAME) extract_clang
-	# $(MAKE) -f $(MAKEFILENAME) extract_lldb
+	$(MAKE) -f $(MAKEFILENAME) CVER=$(CVER) extract_clang
+	# $(MAKE) -f $(MAKEFILENAME) CVER=$(CVER) extract_lldb
 	( cd $(BUILD_DIR)/$(LLVM_VERSION).build && \
 		$(PATH_EXT) cmake ../$(LLVM_VERSION).src \
 		-G "Unix Makefiles" \

@@ -9,7 +9,7 @@ include Makefile.def
 
 .PHONY: build
 build:
-	$(MAKE) -f $(MAKEFILENAME) $(PREFIX)/../Info.plist
+	$(MAKE) -f $(MAKEFILENAME) CVER=$(CVER) $(PREFIX)/../Info.plist
 
 
 .PHONY: clean
@@ -22,10 +22,10 @@ install:
 
 
 $(PREFIX)/../Info.plist: $(MAKEFILE_LIST)
-	$(MAKE) -f $(MAKEFILENAME) build_dt_structure
+	$(MAKE) -f $(MAKEFILENAME) CVER=$(CVER) build_dt_structure
 
 
 .PHONY: build_dt_structure
 build_dt_structure: $(BUILD_DIR)
 	$(MKDIR) -p $(PREFIX)
-	cp ../data/Info.plist $(PREFIX)/../Info.plist
+	cat ../data/Info.plist | sed "s/@VERSION@/$(CVER)/" > $(PREFIX)/../Info.plist
