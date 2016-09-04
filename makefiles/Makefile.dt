@@ -10,11 +10,12 @@ include Makefile.def
 .PHONY: build
 build:
 	$(MAKE) -f $(MAKEFILENAME) CVER=$(CVER) $(PREFIX)/../Info.plist
-
+	$(MAKE) -f $(MAKEFILENAME) CVER=$(CVER) $(PREFIX)/bin/clang-args
 
 .PHONY: clean
 clean:
 	$(RM) -f $(PREFIX)/../Info.plist
+	$(RM) -f $(PREFIX)/bin/clang-args
 
 
 .PHONY: install
@@ -24,8 +25,19 @@ install:
 $(PREFIX)/../Info.plist: $(MAKEFILE_LIST)
 	$(MAKE) -f $(MAKEFILENAME) CVER=$(CVER) build_dt_structure
 
+$(PREFIX)/bin/clang-args: $(MAKEFILE_LIST)
+	$(MAKE) -f $(MAKEFILENAME) CVER=$(CVER) build_clang_wrapper
+
 
 .PHONY: build_dt_structure
 build_dt_structure: $(BUILD_DIR)
 	$(MKDIR) -p $(PREFIX)
 	cat ../data/Info.plist | sed "s/@VERSION@/$(CVER)/" > $(PREFIX)/../Info.plist
+
+
+.PHONY: build_clang_wrapper
+build_clang_wrapper: $(BUILD_DIR)
+	$(MKDIR) -p $(PREFIX)/bin
+	cp ../clang-args/clang-args $(PREFIX)/bin/clang-args
+	chmod a+rx $(PREFIX)/bin/clang-args
+	( cd $(PREFIX)/bin && ln -sf clang-args clang )
