@@ -17,3 +17,9 @@ clean:
 
 .PHONY: install
 install:
+	@echo "copy result toolchain to"
+	@echo "cp $(TOOLCHAIN_BUNDLE_NAME) $(HOME)/Library/Developer/Toolchains"
+	@echo "or"
+	@echo "cp $(TOOLCHAIN_BUNDLE_NAME) /Library/Developer/Toolchains/"
+	$(MKDIR) -p $(HOME)/Library/Developer/Toolchains/
+	( cd $(BUILD_DIR) && cp -rf $(TOOLCHAIN_BUNDLE_NAME) /Library/Developer/Toolchains )

@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXContainerItemProxy section */
+		42600DE41D7C5DCA0093864F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4272BD001D6A55730066C2EC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42600DE01D7C5A380093864F;
+			remoteInfo = plist;
+		};
 		427C846D1D70DAFE00613D42 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4272BD001D6A55730066C2EC /* Project object */;
@@ -77,6 +84,13 @@
 			remoteGlobalIDString = 427C84691D70DAF500613D42;
 			remoteInfo = cmake;
 		};
+		42879AF31D78C48E0013320B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4272BD001D6A55730066C2EC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 427CCE9F1D718E6A00D2C716;
+			remoteInfo = llvm;
+		};
 		428964C51D6CF2880018DCA7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4272BD001D6A55730066C2EC /* Project object */;
@@ -87,6 +101,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		42600DDD1D7C593D0093864F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = data/Info.plist; sourceTree = "<group>"; };
+		42600DDF1D7C597C0093864F /* Makefile.dt */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; fileEncoding = 4; name = Makefile.dt; path = makefiles/Makefile.dt; sourceTree = "<group>"; };
 		427C84681D70DA1B00613D42 /* Makefile.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Makefile.cmake; path = makefiles/Makefile.cmake; sourceTree = "<group>"; };
 		427C846F1D70E55100613D42 /* Makefile.binutils */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Makefile.binutils; path = makefiles/Makefile.binutils; sourceTree = "<group>"; };
 		427C847A1D7188B700613D42 /* Makefile.all */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Makefile.all; path = makefiles/Makefile.all; sourceTree = "<group>"; };
@@ -97,9 +113,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		42600DDC1D7C59330093864F /* data */ = {
+			isa = PBXGroup;
+			children = (
+				42600DDD1D7C593D0093864F /* Info.plist */,
+			);
+			name = data;
+			sourceTree = "<group>";
+		};
 		4272BCFF1D6A55730066C2EC = {
 			isa = PBXGroup;
 			children = (
+				42600DDC1D7C59330093864F /* data */,
 				428964BD1D6A56320018DCA7 /* makefiles */,
 			);
 			sourceTree = "<group>";
@@ -114,6 +139,7 @@
 				427C84681D70DA1B00613D42 /* Makefile.cmake */,
 				427C846F1D70E55100613D42 /* Makefile.binutils */,
 				427CCE9E1D718E4800D2C716 /* Makefile.llvm */,
+				42600DDF1D7C597C0093864F /* Makefile.dt */,
 			);
 			name = makefiles;
 			sourceTree = "<group>";
@@ -122,6 +148,20 @@
 /* End PBXGroup section */
 
 /* Begin PBXLegacyTarget section */
+		42600DE01D7C5A380093864F /* plist */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f Makefile.dt$(ACTION)";
+			buildConfigurationList = 42600DE11D7C5A380093864F /* Build configuration list for PBXLegacyTarget "plist" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = makefiles;
+			dependencies = (
+			);
+			name = plist;
+			passBuildSettingsInEnvironment = 0;
+			productName = plist;
+		};
 		427C84691D70DAF500613D42 /* cmake */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "-f Makefile.cmake $(ACTION)";
@@ -161,6 +201,8 @@
 			buildToolPath = /usr/bin/make;
 			buildWorkingDirectory = makefiles;
 			dependencies = (
+				42600DE51D7C5DCA0093864F /* PBXTargetDependency */,
+				42879AF41D78C48E0013320B /* PBXTargetDependency */,
 				427C84821D71892F00613D42 /* PBXTargetDependency */,
 				427C84801D71892C00613D42 /* PBXTargetDependency */,
 				427C847E1D71892800613D42 /* PBXTargetDependency */,
@@ -225,6 +267,10 @@
 			attributes = {
 				LastUpgradeCheck = 0730;
 				TargetAttributes = {
+					42600DE01D7C5A380093864F = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
 					427C84691D70DAF500613D42 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
@@ -261,12 +307,18 @@
 				427C84691D70DAF500613D42 /* cmake */,
 				427C84701D70E6E600613D42 /* binutils */,
 				427CCE9F1D718E6A00D2C716 /* llvm */,
+				42600DE01D7C5A380093864F /* plist */,
 				427C84761D71888A00613D42 /* build-all */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXTargetDependency section */
+		42600DE51D7C5DCA0093864F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42600DE01D7C5A380093864F /* plist */;
+			targetProxy = 42600DE41D7C5DCA0093864F /* PBXContainerItemProxy */;
+		};
 		427C846E1D70DAFE00613D42 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 428964B91D6A56130018DCA7 /* download */;
@@ -317,6 +369,11 @@
 			target = 427C84691D70DAF500613D42 /* cmake */;
 			targetProxy = 42879AF11D74DBD70013320B /* PBXContainerItemProxy */;
 		};
+		42879AF41D78C48E0013320B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 427CCE9F1D718E6A00D2C716 /* llvm */;
+			targetProxy = 42879AF31D78C48E0013320B /* PBXContainerItemProxy */;
+		};
 		428964C61D6CF2880018DCA7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 428964B91D6A56130018DCA7 /* download */;
@@ -325,6 +382,95 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		42600DE21D7C5A380093864F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		42600DE31D7C5A380093864F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		4272BD041D6A55730066C2EC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -846,6 +992,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		42600DE11D7C5A380093864F /* Build configuration list for PBXLegacyTarget "plist" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42600DE21D7C5A380093864F /* Debug */,
+				42600DE31D7C5A380093864F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		4272BD031D6A55730066C2EC /* Build configuration list for PBXProject "Cortex-M" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

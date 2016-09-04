@@ -38,6 +38,16 @@ extract_clang:
 	( cd $(BUILD_DIR)/$(LLVM_VERSION).src/tools && mv $(CLANG_VERSION).src clang )
 
 
+.PHONY: extract_lldb
+extract_lldb:
+	( cd $(BUILD_DIR)/$(LLVM_VERSION).src/tools/ && $(RM) -rf $(LLDB_VERSION) )
+	( cd $(BUILD_DIR)/$(LLVM_VERSION).src/tools/ && $(RM) -rf $(LLDB_VERSION).src )
+	$(PATH_EXT) xz --decompress --stdout $(DOWNLOAD_DIR)/$(LLDB_VERSION).tar.xz | \
+		tar -x -C $(BUILD_DIR)/$(LLVM_VERSION).src/tools/
+	( cd $(BUILD_DIR)/$(LLVM_VERSION).src/tools && mv $(LLDB_VERSION).src lldb )
+	# patch remove-debug-server
+
+
 .PHONY: build_clang
 build_clang: $(BUILD_DIR)
 	env
@@ -48,6 +58,7 @@ build_clang: $(BUILD_DIR)
 	$(PATH_EXT) xz --decompress --stdout $(DOWNLOAD_DIR)/$(LLVM_VERSION).tar.xz |\
 		tar -x -C $(BUILD_DIR)
 	$(MAKE) -f $(MAKEFILENAME) extract_clang
+	# $(MAKE) -f $(MAKEFILENAME) extract_lldb
 	( cd $(BUILD_DIR)/$(LLVM_VERSION).build && \
 		$(PATH_EXT) cmake ../$(LLVM_VERSION).src \
 		-G "Unix Makefiles" \
@@ -68,16 +79,14 @@ build_clang: $(BUILD_DIR)
 		-DLLVM_LINK_LLVM_DYLIB=ON \
 		-DLLVM_CREATE_XCODE_TOOLCHAIN:BOOL=OFF \
 		-DLLVM_OPTIMIZED_TABLEGEN:BOOL=ON \
-		-DLLVM_PARALLEL_COMPILE_JOBS:STRING=$(NUM_CPUS) )
+		-DLLVM_PARALLEL_COMPILE_JOBS:STRING=$(NUM_CPUS) \
+		-DLLDB_DISABLE_LIBEDIT=1 \
+		-DLLDB_DISABLE_CURSES=1 \
+		-DLLDB_DISABLE_PYTHON=1 )
 	( cd $(BUILD_DIR)/$(LLVM_VERSION).build && \
 		$(PATH_EXT) time make $(MJOBS) )
 	( cd $(BUILD_DIR)/$(LLVM_VERSION).build && \
 		$(PATH_EXT) time make install )
-
-
-# https://github.com/sushihangover/llvm_baremetal/tree/master/scripts
-# -DCMAKE_INSTALL_PREFIX="$TARGET_ROOT/$TARGET_TRIPLE"
-# -DCMAKE_PREFIX_PATH=$TARGET_ROOT
-# -DGCC_INSTALL_PREFIX="$TARGET_ROOT/$TARGET_TRIPLE"
-# LLVM_EXTERNAL_{CLANG,LLD,POLLY}_SOURCE_DIR:PATH
+	( cd $(PREFIX)/bin && mv clang $(TARGET)-clang )
+	( cd $(PREFIX)/bin && mv clang++ $(TARGET)-clang++ )
 

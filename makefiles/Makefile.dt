@@ -1,0 +1,31 @@
+#
+# Makefile - build bundle structure
+# Copyright (C) 2016 Heiko Abraham
+# All rights reserved.
+#
+
+include Makefile.def
+
+
+.PHONY: build
+build:
+	$(MAKE) -f $(MAKEFILENAME) $(PREFIX)/../Info.plist
+
+
+.PHONY: clean
+clean:
+	$(RM) -f $(PREFIX)/../Info.plist
+
+
+.PHONY: install
+install:
+
+
+$(PREFIX)/../Info.plist: $(MAKEFILE_LIST)
+	$(MAKE) -f $(MAKEFILENAME) build_dt_structure
+
+
+.PHONY: build_dt_structure
+build_dt_structure: $(BUILD_DIR)
+	$(MKDIR) -p $(PREFIX)
+	cp ../data/Info.plist $(PREFIX)/../Info.plist
