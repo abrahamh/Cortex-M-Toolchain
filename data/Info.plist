@@ -9,9 +9,11 @@
 	<key>CFBundleIdentifier</key>
 	<string>de.abe-si.cortexm-toolchain</string>
 	<key>CompatibilityVersion</key>
-	<integer>1</integer>
+	<integer>2</integer>
+	<key>CompatibilityVersionDisplayString</key>
+	<string>Xcode 8.0+</string>
 	<key>DisplayName</key>
-	<string>CortexM Toolchain Version @VERSION@</string>
+	<string>Cortex-M Toolchain Version @VERSION@</string>
 	<key>OverrideBuildSettings</key>
 	<dict>
 		<key>ENABLE_BITCODE</key>
