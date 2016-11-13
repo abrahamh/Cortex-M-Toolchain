@@ -33,8 +33,7 @@ $(PREFIX)/bin/$(TARGET)-clang:
 extract_clang:
 	( cd $(BUILD_DIR)/$(LLVM_VERSION).src/tools/ && $(RM) -rf $(CLANG_VERSION) )
 	( cd $(BUILD_DIR)/$(LLVM_VERSION).src/tools/ && $(RM) -rf $(CLANG_VERSION).src )
-	$(PATH_EXT) xz --decompress --stdout $(DOWNLOAD_DIR)/$(CLANG_VERSION).tar.xz | \
-		tar -x -C $(BUILD_DIR)/$(LLVM_VERSION).src/tools/
+	tar -xJf $(DOWNLOAD_DIR)/$(CLANG_VERSION).tar.xz -C $(BUILD_DIR)/$(LLVM_VERSION).src/tools/
 	( cd $(BUILD_DIR)/$(LLVM_VERSION).src/tools && mv $(CLANG_VERSION).src clang )
 
 
@@ -42,8 +41,7 @@ extract_clang:
 extract_lldb:
 	( cd $(BUILD_DIR)/$(LLVM_VERSION).src/tools/ && $(RM) -rf $(LLDB_VERSION) )
 	( cd $(BUILD_DIR)/$(LLVM_VERSION).src/tools/ && $(RM) -rf $(LLDB_VERSION).src )
-	$(PATH_EXT) xz --decompress --stdout $(DOWNLOAD_DIR)/$(LLDB_VERSION).tar.xz | \
-		tar -x -C $(BUILD_DIR)/$(LLVM_VERSION).src/tools/
+	tar -xJf $(DOWNLOAD_DIR)/$(LLDB_VERSION).tar.xz -C $(BUILD_DIR)/$(LLVM_VERSION).src/tools/
 	( cd $(BUILD_DIR)/$(LLVM_VERSION).src/tools && mv $(LLDB_VERSION).src lldb )
 	# patch remove-debug-server
 
@@ -55,8 +53,7 @@ build_clang: $(BUILD_DIR)
 	$(RM) -rf    $(BUILD_DIR)/$(LLVM_VERSION).src
 	$(RM) -rf    $(BUILD_DIR)/$(LLVM_VERSION).build
 	$(MKDIR) -p  $(BUILD_DIR)/$(LLVM_VERSION).build
-	$(PATH_EXT) xz --decompress --stdout $(DOWNLOAD_DIR)/$(LLVM_VERSION).tar.xz |\
-		tar -x -C $(BUILD_DIR)
+	tar -xJf $(DOWNLOAD_DIR)/$(LLVM_VERSION).tar.xz -C $(BUILD_DIR)
 	$(MAKE) -f $(MAKEFILENAME) CVER=$(CVER) extract_clang
 	# $(MAKE) -f $(MAKEFILENAME) CVER=$(CVER) extract_lldb
 	( cd $(BUILD_DIR)/$(LLVM_VERSION).build && \
@@ -89,4 +86,4 @@ build_clang: $(BUILD_DIR)
 		$(PATH_EXT) time make install )
 	( cd $(PREFIX)/bin && mv clang $(TARGET)-clang )
 	( cd $(PREFIX)/bin && mv clang++ $(TARGET)-clang++ )
-
+	$(MKDIR) -p $(PREFIX)/local/include

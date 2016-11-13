@@ -25,7 +25,6 @@ DOWNLOAD_CMD :=	cd $(DOWNLOAD_DIR) && \
 build: $(DOWNLOAD_DIR)/
 	$(MAKE) -f $(MAKEFILENAME) $(DOWNLOAD_DIR)/$(BINUTIL_VERSION).tar.bz2
 	$(MAKE) -f $(MAKEFILENAME) $(DOWNLOAD_DIR)/$(CMAKE_VERSION).tar.gz
-	$(MAKE) -f $(MAKEFILENAME) $(DOWNLOAD_DIR)/$(XZ_VERSION).tar.bz2
 	$(MAKE) -f $(MAKEFILENAME) $(DOWNLOAD_DIR)/$(LLVM_VERSION).tar.xz
 	$(MAKE) -f $(MAKEFILENAME) $(DOWNLOAD_DIR)/$(CLANG_VERSION).tar.xz
 	$(MAKE) -f $(MAKEFILENAME) $(DOWNLOAD_DIR)/$(COMPILER_RT_VERSION).tar.xz
@@ -51,10 +50,6 @@ $(DOWNLOAD_DIR)/$(BINUTIL_VERSION).tar.bz2:
 
 $(DOWNLOAD_DIR)/$(CMAKE_VERSION).tar.gz:
 	$(DOWNLOAD_CMD)  https://cmake.org/files/v3.5/$(CMAKE_VERSION).tar.gz
-	mv $(DOWNLOAD_DIR)/tempfile $@
-
-$(DOWNLOAD_DIR)/$(XZ_VERSION).tar.bz2:
-	$(DOWNLOAD_CMD) http://tukaani.org/xz/$(XZ_VERSION).tar.bz2
 	mv $(DOWNLOAD_DIR)/tempfile $@
 
 $(DOWNLOAD_DIR)/$(LLVM_VERSION).tar.xz:
