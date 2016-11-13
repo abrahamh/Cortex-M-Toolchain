@@ -22,4 +22,5 @@ install:
 	@echo "or"
 	@echo "cp $(TOOLCHAIN_BUNDLE_NAME) /Library/Developer/Toolchains/"
 	$(MKDIR) -p $(HOME)/Library/Developer/Toolchains/
-	( cd $(BUILD_DIR) && cp -rf $(TOOLCHAIN_BUNDLE_NAME) /Library/Developer/Toolchains )
+	( cd $(BUILD_DIR) && cp -rf $(TOOLCHAIN_BUNDLE_NAME) $(HOME)/Library/Developer/Toolchains )
+	make -f Makefile.templates install
