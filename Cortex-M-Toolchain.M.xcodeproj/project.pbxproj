@@ -369,7 +369,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4272BD031D6A55730066C2EC /* Build configuration list for PBXProject "Cortex-M" */;
+			buildConfigurationList = 4272BD031D6A55730066C2EC /* Build configuration list for PBXProject "Cortex-M-Toolchain" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1197,7 +1197,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4272BD031D6A55730066C2EC /* Build configuration list for PBXProject "Cortex-M" */ = {
+		4272BD031D6A55730066C2EC /* Build configuration list for PBXProject "Cortex-M-Toolchain" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4272BD041D6A55730066C2EC /* Debug */,

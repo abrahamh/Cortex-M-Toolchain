@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Cortex-M.xcodeproj">
+      location = "self:Cortex-M-Toolchain.xcodeproj">
    </FileRef>
 </Workspace>
