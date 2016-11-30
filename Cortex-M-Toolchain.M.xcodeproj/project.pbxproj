@@ -40,13 +40,6 @@
 			remoteGlobalIDString = 428964B91D6A56130018DCA7;
 			remoteInfo = download;
 		};
-		427C847D1D71892800613D42 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4272BD001D6A55730066C2EC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 428964C11D6CF2590018DCA7;
-			remoteInfo = xzcat;
-		};
 		427C847F1D71892C00613D42 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4272BD001D6A55730066C2EC /* Project object */;
@@ -75,13 +68,6 @@
 			remoteGlobalIDString = 427C84701D70E6E600613D42;
 			remoteInfo = binutils;
 		};
-		427CCEA91D718E9100D2C716 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4272BD001D6A55730066C2EC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 428964C11D6CF2590018DCA7;
-			remoteInfo = xzcat;
-		};
 		42879AF11D74DBD70013320B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4272BD001D6A55730066C2EC /* Project object */;
@@ -96,12 +82,33 @@
 			remoteGlobalIDString = 427CCE9F1D718E6A00D2C716;
 			remoteInfo = llvm;
 		};
-		428964C51D6CF2880018DCA7 /* PBXContainerItemProxy */ = {
+		42B8DC451DEF79C80036C0E3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4272BD001D6A55730066C2EC /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 428964B91D6A56130018DCA7;
-			remoteInfo = download;
+			remoteGlobalIDString = 429702BD1DEF771500D8C4BC;
+			remoteInfo = libtool;
+		};
+		42B8DC471DEF79E10036C0E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4272BD001D6A55730066C2EC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42600DE91D7C67500093864F;
+			remoteInfo = "clang-args";
+		};
+		42B8DC491DEF79E50036C0E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4272BD001D6A55730066C2EC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 429702BD1DEF771500D8C4BC;
+			remoteInfo = libtool;
+		};
+		42B8DC4B1DEF79FC0036C0E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4272BD001D6A55730066C2EC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 427CCE9F1D718E6A00D2C716;
+			remoteInfo = llvm;
 		};
 		42D27C411D7CC5D000CFAFDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -230,13 +237,14 @@
 /* Begin PBXLegacyTarget section */
 		42600DE01D7C5A380093864F /* plist */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "-f Makefile.dt$(ACTION) CVER=$(CTOOLCHAIN_VERSION)";
+			buildArgumentsString = "-f Makefile.dt $(ACTION) CVER=$(CTOOLCHAIN_VERSION)";
 			buildConfigurationList = 42600DE11D7C5A380093864F /* Build configuration list for PBXLegacyTarget "plist" */;
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
 			buildWorkingDirectory = makefiles;
 			dependencies = (
+				42B8DC461DEF79C80036C0E3 /* PBXTargetDependency */,
 				42D27C421D7CC5D000CFAFDB /* PBXTargetDependency */,
 			);
 			name = plist;
@@ -282,11 +290,12 @@
 			buildToolPath = /usr/bin/make;
 			buildWorkingDirectory = makefiles;
 			dependencies = (
+				42B8DC4A1DEF79E50036C0E3 /* PBXTargetDependency */,
+				42B8DC481DEF79E10036C0E3 /* PBXTargetDependency */,
 				42600DE51D7C5DCA0093864F /* PBXTargetDependency */,
 				42879AF41D78C48E0013320B /* PBXTargetDependency */,
 				427C84821D71892F00613D42 /* PBXTargetDependency */,
 				427C84801D71892C00613D42 /* PBXTargetDependency */,
-				427C847E1D71892800613D42 /* PBXTargetDependency */,
 				427C847C1D71892300613D42 /* PBXTargetDependency */,
 			);
 			name = "build-all";
@@ -303,7 +312,6 @@
 			buildWorkingDirectory = makefiles;
 			dependencies = (
 				42879AF21D74DBD70013320B /* PBXTargetDependency */,
-				427CCEAA1D718E9100D2C716 /* PBXTargetDependency */,
 				427CCEA61D718E8900D2C716 /* PBXTargetDependency */,
 				427CCEA41D718E8500D2C716 /* PBXTargetDependency */,
 			);
@@ -324,21 +332,6 @@
 			name = download;
 			passBuildSettingsInEnvironment = 0;
 			productName = download;
-		};
-		428964C11D6CF2590018DCA7 /* xzcat */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "-f Makefile.xzcat $(ACTION) CVER=$(CTOOLCHAIN_VERSION)";
-			buildConfigurationList = 428964C21D6CF2590018DCA7 /* Build configuration list for PBXLegacyTarget "xzcat" */;
-			buildPhases = (
-			);
-			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = makefiles;
-			dependencies = (
-				428964C61D6CF2880018DCA7 /* PBXTargetDependency */,
-			);
-			name = xzcat;
-			passBuildSettingsInEnvironment = 0;
-			productName = xzcat;
 		};
 /* End PBXLegacyTarget section */
 
@@ -371,6 +364,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				42B8DC4C1DEF79FC0036C0E3 /* PBXTargetDependency */,
 			);
 			name = libtool;
 			productName = libtool;
@@ -408,9 +402,6 @@
 					428964B91D6A56130018DCA7 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
-					428964C11D6CF2590018DCA7 = {
-						CreatedOnToolsVersion = 7.3.1;
-					};
 					429702BD1DEF771500D8C4BC = {
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
@@ -430,7 +421,6 @@
 			projectRoot = "";
 			targets = (
 				428964B91D6A56130018DCA7 /* download */,
-				428964C11D6CF2590018DCA7 /* xzcat */,
 				427C84691D70DAF500613D42 /* cmake */,
 				427C84701D70E6E600613D42 /* binutils */,
 				427CCE9F1D718E6A00D2C716 /* llvm */,
@@ -482,11 +472,6 @@
 			target = 428964B91D6A56130018DCA7 /* download */;
 			targetProxy = 427C847B1D71892300613D42 /* PBXContainerItemProxy */;
 		};
-		427C847E1D71892800613D42 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 428964C11D6CF2590018DCA7 /* xzcat */;
-			targetProxy = 427C847D1D71892800613D42 /* PBXContainerItemProxy */;
-		};
 		427C84801D71892C00613D42 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 427C84691D70DAF500613D42 /* cmake */;
@@ -507,11 +492,6 @@
 			target = 427C84701D70E6E600613D42 /* binutils */;
 			targetProxy = 427CCEA51D718E8900D2C716 /* PBXContainerItemProxy */;
 		};
-		427CCEAA1D718E9100D2C716 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 428964C11D6CF2590018DCA7 /* xzcat */;
-			targetProxy = 427CCEA91D718E9100D2C716 /* PBXContainerItemProxy */;
-		};
 		42879AF21D74DBD70013320B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 427C84691D70DAF500613D42 /* cmake */;
@@ -522,10 +502,25 @@
 			target = 427CCE9F1D718E6A00D2C716 /* llvm */;
 			targetProxy = 42879AF31D78C48E0013320B /* PBXContainerItemProxy */;
 		};
-		428964C61D6CF2880018DCA7 /* PBXTargetDependency */ = {
+		42B8DC461DEF79C80036C0E3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 428964B91D6A56130018DCA7 /* download */;
-			targetProxy = 428964C51D6CF2880018DCA7 /* PBXContainerItemProxy */;
+			target = 429702BD1DEF771500D8C4BC /* libtool */;
+			targetProxy = 42B8DC451DEF79C80036C0E3 /* PBXContainerItemProxy */;
+		};
+		42B8DC481DEF79E10036C0E3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42600DE91D7C67500093864F /* clang-args */;
+			targetProxy = 42B8DC471DEF79E10036C0E3 /* PBXContainerItemProxy */;
+		};
+		42B8DC4A1DEF79E50036C0E3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 429702BD1DEF771500D8C4BC /* libtool */;
+			targetProxy = 42B8DC491DEF79E50036C0E3 /* PBXContainerItemProxy */;
+		};
+		42B8DC4C1DEF79FC0036C0E3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 427CCE9F1D718E6A00D2C716 /* llvm */;
+			targetProxy = 42B8DC4B1DEF79FC0036C0E3 /* PBXContainerItemProxy */;
 		};
 		42D27C421D7CC5D000CFAFDB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1186,89 +1181,6 @@
 			};
 			name = Release;
 		};
-		428964C31D6CF2590018DCA7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		428964C41D6CF2590018DCA7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		429702C11DEF771500D8C4BC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1429,15 +1341,6 @@
 			buildConfigurations = (
 				428964BA1D6A56130018DCA7 /* Debug */,
 				428964BB1D6A56130018DCA7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		428964C21D6CF2590018DCA7 /* Build configuration list for PBXLegacyTarget "xzcat" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				428964C31D6CF2590018DCA7 /* Debug */,
-				428964C41D6CF2590018DCA7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
