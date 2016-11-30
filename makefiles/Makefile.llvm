@@ -87,3 +87,4 @@ build_clang: $(BUILD_DIR)
 	( cd $(PREFIX)/bin && mv clang $(TARGET)-clang )
 	( cd $(PREFIX)/bin && mv clang++ $(TARGET)-clang++ )
 	$(MKDIR) -p $(PREFIX)/local/include
+	( cd $(PREFIX)/lib/clang && ln -s $(LLVM_VERSION_NO) current )
