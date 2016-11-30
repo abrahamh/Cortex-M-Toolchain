@@ -153,6 +153,7 @@
 		428964BF1D6A5B280018DCA7 /* Makefile.def */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; fileEncoding = 4; name = Makefile.def; path = makefiles/Makefile.def; sourceTree = "<group>"; usesTabs = 1; };
 		429702BE1DEF771500D8C4BC /* libtool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = libtool; sourceTree = BUILT_PRODUCTS_DIR; };
 		429702C31DEF776A00D8C4BC /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		42B8DC4D1DEF84FF0036C0E3 /* Makefile.compiler_rt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Makefile.compiler_rt; path = makefiles/Makefile.compiler_rt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +213,7 @@
 		428964BD1D6A56320018DCA7 /* makefiles */ = {
 			isa = PBXGroup;
 			children = (
+				42B8DC4D1DEF84FF0036C0E3 /* Makefile.compiler_rt */,
 				427C847A1D7188B700613D42 /* Makefile.all */,
 				428964BF1D6A5B280018DCA7 /* Makefile.def */,
 				428964BE1D6A56510018DCA7 /* Makefile.dl */,

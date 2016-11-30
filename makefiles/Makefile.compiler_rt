@@ -1,0 +1,70 @@
+#
+# Makefile - to build compiler_rt for Cortex-M devices
+# Copyright (C) 2016 Heiko Abraham
+# All rights reserved.
+#
+
+FILELIST_CORTEX= aeabi_dcmp.S \
+	aeabi_div0.c \
+	aeabi_drsub.c \
+	aeabi_fcmp.S \
+	aeabi_frsub.c \
+	aeabi_idivmod.S \
+	aeabi_ldivmod.S \
+	aeabi_uidivmod.S \
+	aeabi_uldivmod.S 
+
+COMPILER_RT_SOURCE=lib/builtins/arm
+
+CFLAGS_CORTEX_M0 := -mcpu=cortex-m0 -march=armv6-m -mthumb -mfpu=softvfp
+
+CFLAGS_CORTEX_M3 := -mcpu=cortex-m3 -march=armv7-m -mthumb -mfpu=softvfp
+CFLAGS_CORTEX_M3 += -std=gnu99 -fPIC -fno-builtin -fvisibility=hidden -fomit-frame-pointer
+CFLAGS_CORTEX_M3 += -ffreestanding -Wno-unknown-attributes -Wno-macro-redefined
+CFLAGS_CORTEX_M3 += -Ifake-libc
+
+CFLAGS_CORTEX_M4 := -target armv7em-none-eabi -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16
+CFLAGS_CORTEX_M4 += -std=gnu99 -fPIC -fno-builtin -fvisibility=hidden -fomit-frame-pointer
+CFLAGS_CORTEX_M4 += -ffreestanding -Wno-unknown-attributes -Wno-macro-redefined
+CFLAGS_CORTEX_M4 += -Ifake-libc
+
+
+OD_M3=obj/cortex_m3
+OD_M4=obj/cortex_m4
+OBJ1=$(subst .c,.o, $(FILELIST_CORTEX))
+OBJ2=$(subst .s,.o, $(OBJ1))
+OBJ3=$(subst .S,.o, $(OBJ2))
+OBJ_CORTEX_M3=$(addprefix $(OD_M3)/, $(subst .c,.o, $(OBJ3)))
+OBJ_CORTEX_M4=$(addprefix $(OD_M4)/, $(subst .c,.o, $(OBJ3)))
+
+
+all: libcompiler_rt.cortex_m3.a libcompiler_rt.cortex_m4.a
+
+
+$(OD_M3)/%.o: $(COMPILER_RT_SOURCE)/%.c
+	$(CC) -o $@  $(CFLAGS_CORTEX_M3)  -c $<
+
+$(OD_M4)/%.o: $(COMPILER_RT_SOURCE)/%.c
+	$(CC) -o $@  $(CFLAGS_CORTEX_M4)  -c $<
+
+$(OD_M3)/%.o: $(COMPILER_RT_SOURCE)/%.S
+	$(CC) -o $@  $(CFLAGS_CORTEX_M3)  -c $<
+
+$(OD_M4)/%.o: $(COMPILER_RT_SOURCE)/%.S
+	$(CC) -o $@  $(CFLAGS_CORTEX_M4)  -c $<
+
+$(OD_M3):
+	mkdir -p $(OD_M3)
+
+$(OD_M4):
+	mkdir -p $(OD_M4)
+
+libcompiler_rt.cortex_m3.a: $(OD_M3) $(OBJ_CORTEX_M3)
+	$(AR) -rc libcompiler_rt.cortex_m3.a $(OBJ_CORTEX_M3)
+
+libcompiler_rt.cortex_m4.a: $(OD_M4) $(OBJ_CORTEX_M4)
+	$(AR) -rc libcompiler_rt.cortex_m4.a $(OBJ_CORTEX_M4)
+
+
+clean:
+	rm -rf obj

@@ -88,3 +88,22 @@ build_clang: $(BUILD_DIR)
 	( cd $(PREFIX)/bin && mv clang++ $(TARGET)-clang++ )
 	$(MKDIR) -p $(PREFIX)/local/include
 	( cd $(PREFIX)/lib/clang && ln -s $(LLVM_VERSION_NO) current )
+	$(MAKE) -f $(MAKEFILENAME) build_rt
+
+
+.PHONY: build_rt
+build_rt:
+	$(RM) -rf   $(BUILD_DIR)/$(COMPILER_RT_VERSION).src
+	$(RM) -rf   $(BUILD_DIR)/$(COMPILER_RT_VERSION).build
+	$(MKDIR) -p $(BUILD_DIR)/$(COMPILER_RT_VERSION).build
+	tar -xJf $(DOWNLOAD_DIR)/$(COMPILER_RT_VERSION).tar.xz -C $(BUILD_DIR)
+	cp Makefile.compiler_rt $(BUILD_DIR)/$(COMPILER_RT_VERSION).src
+	$(MKDIR) -p $(BUILD_DIR)/$(COMPILER_RT_VERSION).src/fake-libc
+	@echo "void abort(void) __attribute((noreturn));" > \
+	$(BUILD_DIR)/$(COMPILER_RT_VERSION).src/fake-libc/stdlib.h
+	( cd $(BUILD_DIR)/$(COMPILER_RT_VERSION).src && \
+	CC=$(PREFIX)/bin/$(TARGET)-clang make -f Makefile.compiler_rt )
+	$(MKDIR) -p $(PREFIX)/lib/clang/$(LLVM_VERSION_NO)/lib
+	( cd $(BUILD_DIR)/$(COMPILER_RT_VERSION).src && \
+	cp libcompiler_rt.*.a $(PREFIX)/lib/clang/$(LLVM_VERSION_NO)/lib  )
+	( cd $(PREFIX)/lib/clang/$(LLVM_VERSION_NO)/lib && ls -lh libcompiler_rt.*.a )
