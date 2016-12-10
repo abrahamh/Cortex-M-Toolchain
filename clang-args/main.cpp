@@ -199,8 +199,9 @@ int main(int argc, const char * argv[])
                     continue;
                 }
                 
-                /* skip macOS version definition */
-                if ( 0 == strncmp(p, "-mmacosx-version-min=", 17) )
+                /* skip macOS/iOS version definition */
+                if ( (0 == strncmp(p, "-mmacosx-version-min=", 17)) ||
+                     (0 == strncmp(p, "-miphoneos-version-min=", 22)))
                 {
                     continue;
                 }
@@ -215,12 +216,49 @@ int main(int argc, const char * argv[])
                     continue;
                 }
                 
-                /* skip Xlinker arguments */
-                if ( 0 == strcmp(p, "-Xlinker") )
+                if (clang_call_as_linker)
                 {
-                    i++;
-                    continue;
+                    /* skip Xlinker arguments */
+                    if ( 0 == strcmp(p, "-Xlinker") )
+                    {
+                        i++;
+                        continue;
+                    }
+                    
+                    /* skip DylibLinker arguments */
+                    if ( 0 == strcmp(p, "-dynamiclib") )
+                    {
+                        continue;
+                    }
+                    
+                    /* skip DylibLinker arguments */
+                    if ( 0 == strcmp(p, "-install_name") )
+                    {
+                        i++;
+                        continue;
+                    }
+                    
+                    /* skip DylibLinker arguments */
+                    if ( 0 == strcmp(p, "-single_module") )
+                    {
+                        continue;
+                    }
+                    
+                    /* skip DylibLinker arguments */
+                    if ( 0 == strcmp(p, "-compatibility_version") )
+                    {
+                        i++;
+                        continue;
+                    }
+                    
+                    /* skip DylibLinker arguments */
+                    if ( 0 == strcmp(p, "-current_version") )
+                    {
+                        i++;
+                        continue;
+                    }
                 }
+                
                 
                 arguments += argv[i];
                 arguments += " ";
