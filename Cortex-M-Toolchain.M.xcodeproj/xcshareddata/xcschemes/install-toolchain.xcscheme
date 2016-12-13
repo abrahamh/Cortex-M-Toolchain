@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "427C84761D71888A00613D42"
-               BuildableName = "build-all"
-               BlueprintName = "build-all"
+               BlueprintIdentifier = "42B13EA61E00A49F005B726C"
+               BuildableName = "install-toolchain"
+               BlueprintName = "install-toolchain"
                ReferencedContainer = "container:Cortex-M-Toolchain.M.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "427C84761D71888A00613D42"
-            BuildableName = "build-all"
-            BlueprintName = "build-all"
+            BlueprintIdentifier = "42B13EA61E00A49F005B726C"
+            BuildableName = "install-toolchain"
+            BlueprintName = "install-toolchain"
             ReferencedContainer = "container:Cortex-M-Toolchain.M.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "427C84761D71888A00613D42"
-            BuildableName = "build-all"
-            BlueprintName = "build-all"
+            BlueprintIdentifier = "42B13EA61E00A49F005B726C"
+            BuildableName = "install-toolchain"
+            BlueprintName = "install-toolchain"
             ReferencedContainer = "container:Cortex-M-Toolchain.M.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

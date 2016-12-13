@@ -6,21 +6,28 @@
 
 include Makefile.def
 
+
 .PHONY: build
 build:
+ifeq ($(target),install)
+	@echo "cp $(TOOLCHAIN_BUNDLE_NAME) $(HOME)/Library/Developer/Toolchains"
+	@echo "or"
+	@echo "cp $(TOOLCHAIN_BUNDLE_NAME) /Library/Developer/Toolchains/"
+	$(MKDIR) -p $(HOME)/Library/Developer/Toolchains/$(TOOLCHAIN_BUNDLE_NAME)
+	ls -lh ../Xcode_CortexM_Toolchain_$(CVER).tar.gz
+	( cd $(HOME)/Library/Developer/Toolchains && \
+		chmod -R a+w $(TOOLCHAIN_BUNDLE_NAME) )
+	rm -rf $(HOME)/Library/Developer/Toolchains/$(TOOLCHAIN_BUNDLE_NAME)
+	tar -xzf ../Xcode_CortexM_Toolchain_$(CVER).tar.gz -C $(HOME)/Library/Developer/Toolchains/
+	( cd $(HOME)/Library/Developer/Toolchains && \
+		chmod -R a-w $(TOOLCHAIN_BUNDLE_NAME) )
+else
+	rm -f ../Xode_CortexM_Toolchain_$(CVER).tar.gz
+	( cd $(BUILD_DIR) && tar -f ../Xcode_CortexM_Toolchain_$(CVER).tar.gz -cpz \
+		$(TOOLCHAIN_BUNDLE_NAME) )
+endif
 
 
 .PHONY: clean
 clean:
 	$(RM) -rf $(BUILD_DIR)
-
-
-.PHONY: install
-install:
-	@echo "copy result toolchain to"
-	@echo "cp $(TOOLCHAIN_BUNDLE_NAME) $(HOME)/Library/Developer/Toolchains"
-	@echo "or"
-	@echo "cp $(TOOLCHAIN_BUNDLE_NAME) /Library/Developer/Toolchains/"
-	$(MKDIR) -p $(HOME)/Library/Developer/Toolchains/
-	( cd $(BUILD_DIR) && cp -rf $(TOOLCHAIN_BUNDLE_NAME) $(HOME)/Library/Developer/Toolchains )
-	make -f Makefile.templates install

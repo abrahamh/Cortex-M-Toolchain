@@ -68,6 +68,13 @@
 			remoteGlobalIDString = 427C84701D70E6E600613D42;
 			remoteInfo = binutils;
 		};
+		427E7DCA1E00A6C300DBB2FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4272BD001D6A55730066C2EC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 427C84761D71888A00613D42;
+			remoteInfo = "build-toolchain";
+		};
 		42879AF11D74DBD70013320B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4272BD001D6A55730066C2EC /* Project object */;
@@ -281,10 +288,10 @@
 			passBuildSettingsInEnvironment = 0;
 			productName = binutils;
 		};
-		427C84761D71888A00613D42 /* build-all */ = {
+		427C84761D71888A00613D42 /* build-toolchain */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "-f Makefile.all $(ACTION) CVER=$(CTOOLCHAIN_VERSION)";
-			buildConfigurationList = 427C84771D71888A00613D42 /* Build configuration list for PBXLegacyTarget "build-all" */;
+			buildConfigurationList = 427C84771D71888A00613D42 /* Build configuration list for PBXLegacyTarget "build-toolchain" */;
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
@@ -298,7 +305,7 @@
 				427C84801D71892C00613D42 /* PBXTargetDependency */,
 				427C847C1D71892300613D42 /* PBXTargetDependency */,
 			);
-			name = "build-all";
+			name = "build-toolchain";
 			passBuildSettingsInEnvironment = 0;
 			productName = "build-all";
 		};
@@ -332,6 +339,21 @@
 			name = download;
 			passBuildSettingsInEnvironment = 0;
 			productName = download;
+		};
+		42B13EA61E00A49F005B726C /* install-toolchain */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f Makefile.all $(ACTION) CVER=$(CTOOLCHAIN_VERSION) target=install";
+			buildConfigurationList = 42B13EA71E00A49F005B726C /* Build configuration list for PBXLegacyTarget "install-toolchain" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = makefiles;
+			dependencies = (
+				427E7DCB1E00A6C300DBB2FB /* PBXTargetDependency */,
+			);
+			name = "install-toolchain";
+			passBuildSettingsInEnvironment = 0;
+			productName = "install-toolchain";
 		};
 /* End PBXLegacyTarget section */
 
@@ -406,6 +428,10 @@
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
 					};
+					42B13EA61E00A49F005B726C = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 4272BD031D6A55730066C2EC /* Build configuration list for PBXProject "Cortex-M-Toolchain.M" */;
@@ -425,7 +451,8 @@
 				427C84701D70E6E600613D42 /* binutils */,
 				427CCE9F1D718E6A00D2C716 /* llvm */,
 				42600DE01D7C5A380093864F /* plist */,
-				427C84761D71888A00613D42 /* build-all */,
+				427C84761D71888A00613D42 /* build-toolchain */,
+				42B13EA61E00A49F005B726C /* install-toolchain */,
 				42600DE91D7C67500093864F /* clang-args */,
 				429702BD1DEF771500D8C4BC /* libtool */,
 			);
@@ -491,6 +518,11 @@
 			isa = PBXTargetDependency;
 			target = 427C84701D70E6E600613D42 /* binutils */;
 			targetProxy = 427CCEA51D718E8900D2C716 /* PBXContainerItemProxy */;
+		};
+		427E7DCB1E00A6C300DBB2FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 427C84761D71888A00613D42 /* build-toolchain */;
+			targetProxy = 427E7DCA1E00A6C300DBB2FB /* PBXContainerItemProxy */;
 		};
 		42879AF21D74DBD70013320B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1270,6 +1302,65 @@
 			};
 			name = Release;
 		};
+		42B13EA81E00A49F005B726C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		42B13EA91E00A49F005B726C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1318,7 +1409,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		427C84771D71888A00613D42 /* Build configuration list for PBXLegacyTarget "build-all" */ = {
+		427C84771D71888A00613D42 /* Build configuration list for PBXLegacyTarget "build-toolchain" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				427C84781D71888A00613D42 /* Debug */,
@@ -1350,6 +1441,15 @@
 			buildConfigurations = (
 				429702C11DEF771500D8C4BC /* Debug */,
 				429702C21DEF771500D8C4BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42B13EA71E00A49F005B726C /* Build configuration list for PBXLegacyTarget "install-toolchain" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42B13EA81E00A49F005B726C /* Debug */,
+				42B13EA91E00A49F005B726C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
