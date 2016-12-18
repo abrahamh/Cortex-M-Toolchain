@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Kind</key>
+    <string>Xcode.Xcode3.ProjectTemplateUnitKind</string>
+    <key>Identifier</key>
+    <string>de.abe-si.dt.unit.cortexApp</string>
+    <key>Ancestors</key>
+    <array>
+        <string>com.apple.dt.unit.base</string>
+        <string>com.apple.dt.unit.iosBase_Definitions</string>
+        <string>de.abe-si.dt.unit.crossPlatformCortexBase</string>
+    </array>
+    <key>Concrete</key>
+    <true/>
+    <key>SortOrder</key>
+    <integer>50</integer>
+    <key>Description</key>
+    <string>This template creates a Cortex-M application.</string>
+    <key>Options</key>
+    <array>
+        <dict>
+            <key>Identifier</key>
+            <string>buildToolPath</string>
+            <key>Required</key>
+            <true/>
+            <key>Name</key>
+            <string>Build Tool:</string>
+            <key>Description</key>
+            <string>The path to the build tool to use</string>
+            <key>Type</key>
+            <string>text</string>
+            <key>Default</key>
+            <string>/usr/bin/make</string>
+        </dict>
+    </array>
+    <key>Targets</key>
+    <array>
+        <dict>
+            <key>Name</key>
+            <string>___PACKAGENAME___ (build+debug)</string>
+            <key>TargetType</key>
+            <string>Legacy</string>
+            <key>TargetIdentifier</key>
+            <string>com.apple.dt.cocoaLegacyTarget</string>
+            <key>BuildToolPath</key>
+            <string>___VARIABLE_buildToolPath___</string>
+            <key>BuildToolArgsString</key>
+            <string>$(ACTION)</string>
+            <key>SharedSettings</key>
+            <dict>
+                <key>BuildToolDirectory</key>
+                <string>$(PROJECT)</string>
+                <key>BuildWorkingDirectory</key>
+                <string>$(PROJECT)</string>
+                <key>BuildToolWorkingDirectory</key>
+                <string>$(PROJECT)</string>
+                <key>BuildToolWorkingDir</key>
+                <string>$(PROJECT)</string>
+            </dict>
+            <key>Dependencies</key>
+            <array><string>my_real_application</string></array>
+        </dict>
+        
+        <dict>
+            <key>ProductType</key>
+            <string>com.apple.product-type.library.dynamic</string>
+            <key>TargetIdentifier</key>
+            <string>de.abe-si.dt.unit.cortexAppTarget</string>
+            <key>TargetIdentifier</key>
+            <string>my_real_application</string>
+            <key>SharedSettings</key>
+            <dict>
+               <key>ARCHS</key>
+               <string>___VARIABLE_prjArchitecture___</string>
+               <key>SDKROOT</key>
+               <string>iphoneos</string>
+               <key>SUPPORTED_PLATFORMS</key>
+               <string>iphoneos</string>
+               <key>VALID_ARCHS</key>
+               <string>arm64 armv7 armv7s armv7m armv7em armv6m</string>
+               <key>PRODUCT_NAME</key>
+               <string>$(TARGET_NAME).elf</string>
+               <key>PATH</key>
+               <string>$(PATH):$(PROJECT_DIR)</string>
+               <key>SKIP_INSTALL</key>
+               <string>YES</string>
+               <key>USE_HEADERMAP</key>
+               <string>NO</string>
+               <key>CODE_SIGN_IDENTITY</key>
+               <string></string>
+               <key>CODE_SIGN_ENTITLEMENTS</key>
+               <string>$(TARGET_NAME)/bsp/sign/none.entitlements</string>
+               <key>GCC_NO_COMMON_BLOCKS</key>
+               <string>YES</string>
+               <key>GCC_ENABLE_BUILTIN_FUNCTIONS</key>
+               <string>NO</string>
+               <key>GCC_ENABLE_PASCAL_STRINGS</key>
+               <string>NO</string>
+               <key>GCC_C_LANGUAGE_STANDARD</key>
+               <string>gnu99</string>
+               <key>CPU_ARCHITECTURE</key>
+               <string>___VARIABLE_cpuArchitecture___</string>
+               <key>CPU_FAMILY</key>
+               <string>___VARIABLE_cpuFamily___</string>
+               <key>CPU_FLOAT</key>
+               <string>___VARIABLE_cpuFloat___</string>
+               <key>CPU_FLOAT_ABI</key>
+               <string>___VARIABLE_cpuFloatAbi___</string>
+               <key>CPU_LINKER_SCRIPT</key>
+               <string>___VARIABLE_linkerScript___</string>
+               <key>CPU_DEFINES</key>
+               <string>___VARIABLE_targetDefines___</string>
+               <key>EXECUTABLE_EXTENSION</key>
+               <string>elf</string>
+               <key>DEAD_CODE_STRIPPING</key>
+               <string>NO</string>
+               <key>OTHER_CFLAGS</key>
+               <array>
+                  <string>-march=$(CPU_ARCHITECTURE)</string>
+                  <string>-mcpu=$(CPU_FAMILY)</string>
+                  <string>$(CPU_FLOAT_ABI)</string>
+                  <string>-mfpu=$(CPU_FLOAT)</string>
+                  <string>-mthumb</string>
+                  <string>-ffreestanding</string>
+                  <string>-fsigned-char</string>
+                  <string>-ffunction-sections</string>
+                  <string>-fdata-sections</string>
+                  <string>$(CPU_DEFINES)</string>
+                  <!-- <string>-target-abi aapcs</string> -->
+               </array>
+               <key>OTHER_LDFLAGS</key>
+               <array>
+                  <string>-Map $(PRODUCT_NAME).map</string>
+                  <string>-L$(SOURCE_ROOT)/$(PRODUCT_NAME)/bsp/linker</string>
+                  <string>-T $(CPU_LINKER_SCRIPT)</string>
+                  <string>-nostdlib</string>
+                  <string>--gc-sections</string>
+               </array>
+               <key>HEADER_SEARCH_PATHS</key>
+               <array>
+                  <string>$(TOOLCHAIN_DIR)/usr/include</string>
+                  <string>$(TOOLCHAIN_DIR)/usr/lib/clang/current/include</string>
+                  <string>$(PROJECT_DIR)/$(PRODUCT_NAME)/bsp/libc/include</string>
+                  <string>$(PROJECT_DIR)/$(PRODUCT_NAME)/bsp/cmsis</string>
+               </array>
+               <key>CLANG_ENABLE_MODULES</key>
+               <string>NO</string>
+               <key>CLANG_MODULES_AUTOLINK</key>
+               <string>NO</string>
+               <key>ALWAYS_SEARCH_USER_PATHS</key>
+               <string>YES</string>
+            </dict>
+            <key>BuildPhases</key>
+            <array>
+                <dict>
+                    <key>Class</key>
+                    <string>Sources</string>
+                </dict>
+                <dict>
+                    <key>Class</key>
+                    <string>Frameworks</string>
+                </dict>
+            </array>
+            
+            
+            <!-- <key>Dependencies</key> -->
+            <!-- <array><integer>0</integer></array> -->
+            <!-- <key>Frameworks</key> -->
+            <!-- <array> -->
+            <!--    <string>CoreAudio</string> -->
+            <!-- </array> -->
+        </dict>
+        
+        
+        <!-- <key>Dependencies</key> -->
+        <!-- <array><integer>0</integer></array> -->
+    </array>
+    <key>Definitions</key>
+    <dict>
+        <key>Makefile</key>
+        <dict>
+            <key>Path</key>
+            <string>Makefile</string>
+            
+            <key>TargetIdentifiers</key>
+            <array>
+                <string>de.abe-si.dt.unit.cortexAppTarget</string>
+            </array>
+            
+        </dict>
+        <key>main.c</key>
+        <dict>
+            <key>Path</key>
+            <string>main.c</string>
+        </dict>
+        <key>bsp/sign/none.entitlements</key>
+        <dict>
+            <key>Group</key>
+            <array>
+                <string>bsp</string>
+                <string>sign</string>
+            </array>
+            <key>Path</key>
+            <string>bsp/sign/none.entitlements</string>
+        </dict>
+        <key>bsp/linker/cortex-m0.ld</key>
+        <dict>
+           <key>Group</key>
+           <array>
+              <string>bsp</string>
+              <string>linker</string>
+           </array>
+           <key>Path</key>
+           <string>bsp/linker/cortex-m0.ld</string>
+        </dict>
+        <key>bsp/linker/cortex-m3.ld</key>
+        <dict>
+           <key>Group</key>
+           <array>
+              <string>bsp</string>
+              <string>linker</string>
+           </array>
+           <key>Path</key>
+           <string>bsp/linker/cortex-m3.ld</string>
+        </dict>
+        <key>bsp/linker/cortex-m4.ld</key>
+        <dict>
+           <key>Group</key>
+           <array>
+              <string>bsp</string>
+              <string>linker</string>
+           </array>
+           <key>Path</key>
+           <string>bsp/linker/cortex-m4.ld</string>
+        </dict>
+    </dict>
+    <key>Nodes</key>
+    <array>
+        <string>main.c</string>
+        <string>Makefile</string>
+        <string>bsp/sign/none.entitlements</string>
+        <string>bsp/linker/cortex-m0.ld</string>
+        <string>bsp/linker/cortex-m3.ld</string>
+        <string>bsp/linker/cortex-m4.ld</string>
+    </array>
+    
+    <key>Project</key>
+        <dict>
+                <key>Configurations</key>
+                <dict>
+                        <key>Debug</key>
+                        <dict/>
+                        <key>Release</key>
+                        <dict/>
+                </dict>
+        </dict>
+</dict>
+</plist>

@@ -156,6 +156,20 @@
 		427C846F1D70E55100613D42 /* Makefile.binutils */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Makefile.binutils; path = makefiles/Makefile.binutils; sourceTree = "<group>"; };
 		427C847A1D7188B700613D42 /* Makefile.all */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Makefile.all; path = makefiles/Makefile.all; sourceTree = "<group>"; };
 		427CCE9E1D718E4800D2C716 /* Makefile.llvm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Makefile.llvm; path = makefiles/Makefile.llvm; sourceTree = "<group>"; };
+		427E7DD01E06C11B00DBB2FB /* Makefile.templates */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Makefile.templates; path = makefiles/Makefile.templates; sourceTree = "<group>"; };
+		427E7DD31E06C26900DBB2FB /* TemplateInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = TemplateInfo.plist; path = templates/CrossPlatformCortexM.xctemplate/TemplateInfo.plist; sourceTree = "<group>"; };
+		427E7DD51E06C8F900DBB2FB /* TemplateIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TemplateIcon.png; path = "templates/Static Library.xctemplate/TemplateIcon.png"; sourceTree = "<group>"; };
+		427E7DD61E06C8F900DBB2FB /* TemplateInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = TemplateInfo.plist; path = "templates/Static Library.xctemplate/TemplateInfo.plist"; sourceTree = "<group>"; };
+		427E7DD71E06C99C00DBB2FB /* TemplateIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TemplateIcon@2x.png"; path = "templates/Static Library.xctemplate/TemplateIcon@2x.png"; sourceTree = "<group>"; };
+		427E7DD91E06D0BB00DBB2FB /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = main.c; path = "templates/Bare Metal.xctemplate/main.c"; sourceTree = "<group>"; };
+		427E7DDA1E06D0BB00DBB2FB /* TemplateIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TemplateIcon.png; path = "templates/Bare Metal.xctemplate/TemplateIcon.png"; sourceTree = "<group>"; };
+		427E7DDB1E06D0BB00DBB2FB /* TemplateIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TemplateIcon@2x.png"; path = "templates/Bare Metal.xctemplate/TemplateIcon@2x.png"; sourceTree = "<group>"; };
+		427E7DDC1E06D0BB00DBB2FB /* TemplateInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = TemplateInfo.plist; path = "templates/Bare Metal.xctemplate/TemplateInfo.plist"; sourceTree = "<group>"; };
+		427E7DE01E06D14B00DBB2FB /* cortex-m0.ld */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "cortex-m0.ld"; path = "templates/Bare Metal.xctemplate/bsp/linker/cortex-m0.ld"; sourceTree = "<group>"; };
+		427E7DE11E06D14B00DBB2FB /* cortex-m3.ld */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "cortex-m3.ld"; path = "templates/Bare Metal.xctemplate/bsp/linker/cortex-m3.ld"; sourceTree = "<group>"; };
+		427E7DE21E06D14B00DBB2FB /* cortex-m4.ld */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "cortex-m4.ld"; path = "templates/Bare Metal.xctemplate/bsp/linker/cortex-m4.ld"; sourceTree = "<group>"; };
+		427E7DE31E06D15900DBB2FB /* none.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = none.entitlements; path = "templates/Bare Metal.xctemplate/bsp/sign/none.entitlements"; sourceTree = "<group>"; };
+		427E80151E06E43300DBB2FB /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = Makefile; path = "templates/Bare Metal.xctemplate/Makefile"; sourceTree = "<group>"; usesTabs = 1; };
 		428964BE1D6A56510018DCA7 /* Makefile.dl */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; fileEncoding = 4; name = Makefile.dl; path = makefiles/Makefile.dl; sourceTree = "<group>"; usesTabs = 1; };
 		428964BF1D6A5B280018DCA7 /* Makefile.def */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; fileEncoding = 4; name = Makefile.def; path = makefiles/Makefile.def; sourceTree = "<group>"; usesTabs = 1; };
 		429702BE1DEF771500D8C4BC /* libtool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = libtool; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -212,8 +226,77 @@
 				428964BD1D6A56320018DCA7 /* makefiles */,
 				42600DEC1D7C67500093864F /* clang-args */,
 				429702BF1DEF771500D8C4BC /* libtool */,
+				427E7DD11E06C1B200DBB2FB /* templates */,
 				42600DEB1D7C67500093864F /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		427E7DD11E06C1B200DBB2FB /* templates */ = {
+			isa = PBXGroup;
+			children = (
+				427E7DD81E06CFE300DBB2FB /* Bare Metal */,
+				427E7DD41E06C8E300DBB2FB /* Static Library */,
+				427E7DD21E06C25500DBB2FB /* CrossPlatformCortexM */,
+			);
+			name = templates;
+			sourceTree = "<group>";
+		};
+		427E7DD21E06C25500DBB2FB /* CrossPlatformCortexM */ = {
+			isa = PBXGroup;
+			children = (
+				427E7DD31E06C26900DBB2FB /* TemplateInfo.plist */,
+			);
+			name = CrossPlatformCortexM;
+			sourceTree = "<group>";
+		};
+		427E7DD41E06C8E300DBB2FB /* Static Library */ = {
+			isa = PBXGroup;
+			children = (
+				427E7DD71E06C99C00DBB2FB /* TemplateIcon@2x.png */,
+				427E7DD51E06C8F900DBB2FB /* TemplateIcon.png */,
+				427E7DD61E06C8F900DBB2FB /* TemplateInfo.plist */,
+			);
+			name = "Static Library";
+			sourceTree = "<group>";
+		};
+		427E7DD81E06CFE300DBB2FB /* Bare Metal */ = {
+			isa = PBXGroup;
+			children = (
+				427E7DDD1E06D12F00DBB2FB /* bsp */,
+				427E7DD91E06D0BB00DBB2FB /* main.c */,
+				427E80151E06E43300DBB2FB /* Makefile */,
+				427E7DDA1E06D0BB00DBB2FB /* TemplateIcon.png */,
+				427E7DDB1E06D0BB00DBB2FB /* TemplateIcon@2x.png */,
+				427E7DDC1E06D0BB00DBB2FB /* TemplateInfo.plist */,
+			);
+			name = "Bare Metal";
+			sourceTree = "<group>";
+		};
+		427E7DDD1E06D12F00DBB2FB /* bsp */ = {
+			isa = PBXGroup;
+			children = (
+				427E7DDF1E06D13900DBB2FB /* linker */,
+				427E7DDE1E06D13400DBB2FB /* sign */,
+			);
+			name = bsp;
+			sourceTree = "<group>";
+		};
+		427E7DDE1E06D13400DBB2FB /* sign */ = {
+			isa = PBXGroup;
+			children = (
+				427E7DE31E06D15900DBB2FB /* none.entitlements */,
+			);
+			name = sign;
+			sourceTree = "<group>";
+		};
+		427E7DDF1E06D13900DBB2FB /* linker */ = {
+			isa = PBXGroup;
+			children = (
+				427E7DE01E06D14B00DBB2FB /* cortex-m0.ld */,
+				427E7DE11E06D14B00DBB2FB /* cortex-m3.ld */,
+				427E7DE21E06D14B00DBB2FB /* cortex-m4.ld */,
+			);
+			name = linker;
 			sourceTree = "<group>";
 		};
 		428964BD1D6A56320018DCA7 /* makefiles */ = {
@@ -226,6 +309,7 @@
 				427C846F1D70E55100613D42 /* Makefile.binutils */,
 				427CCE9E1D718E4800D2C716 /* Makefile.llvm */,
 				42600DDF1D7C597C0093864F /* Makefile.dt */,
+				427E7DD01E06C11B00DBB2FB /* Makefile.templates */,
 			);
 			name = makefiles;
 			sourceTree = "<group>";
@@ -326,6 +410,20 @@
 			passBuildSettingsInEnvironment = 0;
 			productName = llvm;
 		};
+		427E7DCC1E06C0F500DBB2FB /* install-templates */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f Makefile.templates $(ACTION)";
+			buildConfigurationList = 427E7DCD1E06C0F500DBB2FB /* Build configuration list for PBXLegacyTarget "install-templates" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = makefiles;
+			dependencies = (
+			);
+			name = "install-templates";
+			passBuildSettingsInEnvironment = 1;
+			productName = "install-templates";
+		};
 		428964B91D6A56130018DCA7 /* download */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "-f Makefile.dl $(ACTION)";
@@ -421,6 +519,10 @@
 					427CCE9F1D718E6A00D2C716 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
+					427E7DCC1E06C0F500DBB2FB = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
 					428964B91D6A56130018DCA7 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
@@ -455,6 +557,7 @@
 				42B13EA61E00A49F005B726C /* install-toolchain */,
 				42600DE91D7C67500093864F /* clang-args */,
 				429702BD1DEF771500D8C4BC /* libtool */,
+				427E7DCC1E06C0F500DBB2FB /* install-templates */,
 			);
 		};
 /* End PBXProject section */
@@ -752,7 +855,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CTOOLCHAIN_VERSION = 1.5;
+				CTOOLCHAIN_VERSION = 1.6;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -778,7 +881,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CTOOLCHAIN_VERSION = 1.5;
+				CTOOLCHAIN_VERSION = 1.6;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1122,6 +1225,65 @@
 			};
 			name = Release;
 		};
+		427E7DCE1E06C0F500DBB2FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		427E7DCF1E06C0F500DBB2FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		428964BA1D6A56130018DCA7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1426,6 +1588,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		427E7DCD1E06C0F500DBB2FB /* Build configuration list for PBXLegacyTarget "install-templates" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				427E7DCE1E06C0F500DBB2FB /* Debug */,
+				427E7DCF1E06C0F500DBB2FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		428964BC1D6A56130018DCA7 /* Build configuration list for PBXLegacyTarget "download" */ = {
 			isa = XCConfigurationList;

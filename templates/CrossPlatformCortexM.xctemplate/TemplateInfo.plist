@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Kind</key>
+    <string>Xcode.Xcode3.ProjectTemplateUnitKind</string>
+    <key>Identifier</key>
+    <string>de.abe-si.dt.unit.crossPlatformCortexBase</string>
+    <key>Targets</key>
+    <array>
+        <dict>
+            <key>Concrete</key>
+            <false/>
+            <key>SharedSettings</key>
+            <dict>
+                <!-- Override product name and bundle identifier to use product name option variabel, not package name or expanded target name -->
+               <key>PRODUCT_NAME</key>
+                <string>___VARIABLE_productName___</string>
+                <key>PRODUCT_BUNDLE_IDENTIFIER</key>
+                <string>___VARIABLE_bundleIdentifierPrefix:bundleIdentifier___.___VARIABLE_productName:RFC1034Identifier___</string>
+            </dict>
+        </dict>
+    </array>
+
+
+    <key>Options</key>
+    <array>
+    <dict>
+        <key>Identifier</key>
+        <string>boardTargetType</string>
+        <key>Required</key>
+        <true/>
+        <key>Name</key>
+        <string>Board:</string>
+        <key>Description</key>
+        <string>Which type of board is your target</string>
+        <key>Type</key>
+        <string>popup</string>
+        <key>Default</key>
+        <string>FRDM-KL25Z</string>
+        <key>Values</key>
+        <array>
+            <string>Cortex-M0</string>
+            <string>Cortex-M3</string>
+            <string>Cortex-M4</string>
+            <string>FRDM-KL25Z</string>
+            <!-- <string>FRDM-K64F</string> -->
+            <!-- <string>Nucleo STM32F030 R8</string> -->
+            <!-- <string>Nucleo STM32F072 RB</string> -->
+            <!-- <string>Nucleo STM32F091 RC</string> -->
+            <!-- <string>Nucleo STM32F103 RB</string> -->
+            <!-- <string>Nucleo STM32F303 K8</string> -->
+            <!-- <string>Nucleo STM32F401 RE</string> -->
+            <!-- <string>Nucleo STM32F411 RE</string> -->
+            <!-- <string>Nucleo STM32F429 ZI</string> -->
+            <!-- <string>Nucleo STM32F446 RE</string> -->
+            <!-- <string>STM32F429 Disco</string> -->
+            <!-- <string>TWR-K65F180</string> -->
+        </array>
+        <key>Variables</key>
+        <dict>
+            <key>Cortex-M0</key>
+            <dict>
+                <key>linkerScript</key>
+                <string>cortex-m0.ld</string>
+                <key>prjArchitecture</key>
+                <string>armv6m</string>
+                <key>cpuArchitecture</key>
+                <string>armv6-m</string>
+                <key>cpuFamily</key>
+                <string>cortex-m0</string>
+                <key>cpuFloat</key>
+                <string>softvfp</string>
+                <key>cpuFloatAbi</key>
+                <string></string>
+                <key>targetDefines</key>
+                <string></string>
+            </dict>
+            <key>Cortex-M3</key>
+            <dict>
+                <key>linkerScript</key>
+                <string>cortex-m3.ld</string>
+                <key>prjArchitecture</key>
+                <string>armv7m</string>
+                <key>cpuArchitecture</key>
+                <string>armv7-m</string>
+                <key>cpuFamily</key>
+                <string>cortex-m3</string>
+                <key>cpuFloat</key>
+                <string>softvfp</string>
+                <key>cpuFloatAbi</key>
+                <string></string>
+                <key>targetDefines</key>
+                <string></string>
+            </dict>
+            <key>Cortex-M4</key>
+            <dict>
+                <key>linkerScript</key>
+                <string>cortex-m4.ld</string>
+                <key>prjArchitecture</key>
+                <string>armv7em</string>
+                <key>cpuArchitecture</key>
+                <string>armv7e-m</string>
+                <key>cpuFamily</key>
+                <string>cortex-m4</string>
+                <key>cpuFloat</key>
+                <string>fpv4-sp-d16</string>
+                <key>cpuFloatAbi</key>
+                <string>-mfloat-abi=hard</string>
+                <key>targetDefines</key>
+                <string></string>
+            </dict>
+            <key>FRDM-KL25Z</key>
+            <dict>
+                <key>linkerScript</key>
+                <string>fsl_mkl25z128.ld</string>
+                <key>prjArchitecture</key>
+                <string>armv6m</string>
+                <key>cpuArchitecture</key>
+                <string>armv6-m</string>
+                <key>cpuFamily</key>
+                <string>cortex-m0</string>
+                <key>cpuFloat</key>
+                <string>softvfp</string>
+                <key>cpuFloatAbi</key>
+                <string></string>
+                <key>targetDefines</key>
+                <string></string>
+            </dict>
+        </dict>
+    </dict>
+    </array>
+    
+
+</dict>
+</plist>

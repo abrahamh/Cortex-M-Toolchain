@@ -1,0 +1,45 @@
+#
+# Makefile - xcode project templates
+# Copyright (C) 2016 Heiko Abraham
+# All rights reserved. 🍪⚙🏛✅
+#
+
+
+DEST_DIR=$(HOME)/Library/Developer/Xcode/Templates/Cortex-M
+TEMPLATE_SRC=../templates
+
+include Makefile.def
+
+
+.PHONY: build
+build: clean
+	@echo "destination : $(DEST_DIR)"
+	$(MKDIR) -p $(DEST_DIR)/CrossPlatformCortexM.xctemplate
+	cp $(TEMPLATE_SRC)/CrossPlatformCortexM.xctemplate/TemplateInfo.plist \
+		$(DEST_DIR)/CrossPlatformCortexM.xctemplate
+	$(MKDIR) -p $(DEST_DIR)/Static\ Library.xctemplate
+	cp $(TEMPLATE_SRC)/Static\ Library.xctemplate/TemplateIcon*png \
+		$(DEST_DIR)/Static\ Library.xctemplate
+	cp $(TEMPLATE_SRC)/Static\ Library.xctemplate/TemplateInfo.plist \
+		$(DEST_DIR)/Static\ Library.xctemplate
+	$(MKDIR) -p $(DEST_DIR)/Bare\ Metal.xctemplate/bsp/linker
+	$(MKDIR) -p $(DEST_DIR)/Bare\ Metal.xctemplate/bsp/sign
+	cp $(TEMPLATE_SRC)/Bare\ Metal.xctemplate/TemplateIcon*png \
+		$(DEST_DIR)/Bare\ Metal.xctemplate
+	cp $(TEMPLATE_SRC)/Bare\ Metal.xctemplate/TemplateInfo.plist \
+		$(DEST_DIR)/Bare\ Metal.xctemplate
+	cp $(TEMPLATE_SRC)/Bare\ Metal.xctemplate/Makefile \
+		$(DEST_DIR)/Bare\ Metal.xctemplate
+	cp $(TEMPLATE_SRC)/Bare\ Metal.xctemplate/main.c \
+		$(DEST_DIR)/Bare\ Metal.xctemplate
+	cp $(TEMPLATE_SRC)/Bare\ Metal.xctemplate/bsp/sign/none.entitlements \
+		$(DEST_DIR)/Bare\ Metal.xctemplate/bsp/sign
+	cp $(TEMPLATE_SRC)/Bare\ Metal.xctemplate/bsp/linker/*.ld \
+		$(DEST_DIR)/Bare\ Metal.xctemplate/bsp/linker
+
+
+
+
+.PHONY: clean
+clean:
+	$(RM) -rf $(DEST_DIR)
