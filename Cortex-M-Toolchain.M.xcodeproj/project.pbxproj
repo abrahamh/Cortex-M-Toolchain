@@ -172,6 +172,7 @@
 		427E80151E06E43300DBB2FB /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = Makefile; path = "templates/Bare Metal.xctemplate/Makefile"; sourceTree = "<group>"; usesTabs = 1; };
 		428964BE1D6A56510018DCA7 /* Makefile.dl */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; fileEncoding = 4; name = Makefile.dl; path = makefiles/Makefile.dl; sourceTree = "<group>"; usesTabs = 1; };
 		428964BF1D6A5B280018DCA7 /* Makefile.def */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; fileEncoding = 4; name = Makefile.def; path = makefiles/Makefile.def; sourceTree = "<group>"; usesTabs = 1; };
+		428D31561E244828007ACBAB /* fsl_mkl25z128.ld */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fsl_mkl25z128.ld; path = "templates/Bare Metal.xctemplate/bsp/linker/fsl_mkl25z128.ld"; sourceTree = "<group>"; };
 		429702BE1DEF771500D8C4BC /* libtool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = libtool; sourceTree = BUILT_PRODUCTS_DIR; };
 		429702C31DEF776A00D8C4BC /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -292,6 +293,7 @@
 		427E7DDF1E06D13900DBB2FB /* linker */ = {
 			isa = PBXGroup;
 			children = (
+				428D31561E244828007ACBAB /* fsl_mkl25z128.ld */,
 				427E7DE01E06D14B00DBB2FB /* cortex-m0.ld */,
 				427E7DE11E06D14B00DBB2FB /* cortex-m3.ld */,
 				427E7DE21E06D14B00DBB2FB /* cortex-m4.ld */,
@@ -855,7 +857,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CTOOLCHAIN_VERSION = 1.6;
+				CTOOLCHAIN_VERSION = 1.7;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -881,7 +883,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CTOOLCHAIN_VERSION = 1.6;
+				CTOOLCHAIN_VERSION = 1.7;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1596,6 +1598,7 @@
 				427E7DCF1E06C0F500DBB2FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		428964BC1D6A56130018DCA7 /* Build configuration list for PBXLegacyTarget "download" */ = {
 			isa = XCConfigurationList;
