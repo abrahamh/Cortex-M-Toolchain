@@ -435,7 +435,7 @@
 			dependencies = (
 			);
 			name = download;
-			passBuildSettingsInEnvironment = 0;
+			passBuildSettingsInEnvironment = 1;
 			productName = download;
 		};
 		42B13EA61E00A49F005B726C /* install-toolchain */ = {
