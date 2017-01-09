@@ -6,7 +6,11 @@
 //___COPYRIGHT___
 //
 
-#include <stdio.h>
+#include <stdint.h>
+
+#ifndef NULL
+#define NULL 0 
+#endif
 
 void Reset_Handler(void);
 int main(int argc, const char * argv[]);

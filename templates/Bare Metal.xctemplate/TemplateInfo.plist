@@ -47,9 +47,11 @@
             <key>BuildToolPath</key>
             <string>___VARIABLE_buildToolPath___</string>
             <key>BuildToolArgsString</key>
-            <string>$(ACTION)</string>
+            <string>-C $(PROJECT) $(ACTION)</string>
             <key>SharedSettings</key>
             <dict>
+                <key>BuildToolDirectoryHeiko</key>
+                <string>___VARIABLE_buildToolPath___</string>
                 <key>BuildToolDirectory</key>
                 <string>$(PROJECT)</string>
                 <key>BuildWorkingDirectory</key>
@@ -81,7 +83,7 @@
                <key>VALID_ARCHS</key>
                <string>arm64 armv7 armv7s armv7m armv7em armv6m</string>
                <key>PRODUCT_NAME</key>
-               <string>$(TARGET_NAME).elf</string>
+               <string>$(TARGET_NAME)</string>
                <key>PATH</key>
                <string>$(PATH):$(PROJECT_DIR)</string>
                <key>SKIP_INSTALL</key>
@@ -235,6 +237,16 @@
            <key>Path</key>
            <string>bsp/linker/cortex-m4.ld</string>
         </dict>
+        <key>bsp/linker/fsl_mkl25z128.ld</key>
+        <dict>
+            <key>Group</key>
+            <array>
+                <string>bsp</string>
+                <string>linker</string>
+            </array>
+            <key>Path</key>
+            <string>bsp/linker/fsl_mkl25z128.ld</string>
+        </dict>
     </dict>
     <key>Nodes</key>
     <array>
@@ -244,6 +256,7 @@
         <string>bsp/linker/cortex-m0.ld</string>
         <string>bsp/linker/cortex-m3.ld</string>
         <string>bsp/linker/cortex-m4.ld</string>
+        <string>bsp/linker/fsl_mkl25z128.ld</string>
     </array>
     
     <key>Project</key>
