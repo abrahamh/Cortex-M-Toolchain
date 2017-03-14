@@ -33,4 +33,6 @@ xcuserdata
 
 download-cache/
 builddir/
+clang-args/clang-args
+libtool/libtool
 Xcode_CortexM_Toolchai*tar.gz
