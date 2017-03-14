@@ -276,6 +276,7 @@
 		427E7DDD1E06D12F00DBB2FB /* bsp */ = {
 			isa = PBXGroup;
 			children = (
+				42C412A01E77F5420045DB4D /* compiler_rt */,
 				427E7DDF1E06D13900DBB2FB /* linker */,
 				427E7DDE1E06D13400DBB2FB /* sign */,
 			);
@@ -323,6 +324,13 @@
 				429702C31DEF776A00D8C4BC /* main.cpp */,
 			);
 			path = libtool;
+			sourceTree = "<group>";
+		};
+		42C412A01E77F5420045DB4D /* compiler_rt */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = compiler_rt;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -857,7 +865,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CTOOLCHAIN_VERSION = 1.8;
+				CTOOLCHAIN_VERSION = 1.7.1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -883,7 +891,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CTOOLCHAIN_VERSION = 1.8;
+				CTOOLCHAIN_VERSION = 1.7.1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
