@@ -257,6 +257,12 @@ int main(int argc, const char * argv[])
                         i++;
                         continue;
                     }
+                    
+                    /* skip unhandled linker args */
+                    if ( 0 == strcmp(p, "-ftest-coverage") )
+                    {
+                        continue;
+                    }
                 }
                 
                 
