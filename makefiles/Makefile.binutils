@@ -1,6 +1,6 @@
 #
 # Makefile - build binutils
-# Copyright (C) 2015-2016 Heiko Abraham
+# Copyright (C) 2015-2017 Heiko Abraham
 # All rights reserved.
 #
 
@@ -9,9 +9,9 @@ include Makefile.def
 TARGET=arm-none-eabi
 SYSROOT_PREFIX:=$(PREFIX)
 
+
 .PHONY: build
-build:
-	env
+build: $(BUILD_DIR)/ $(MAKEFILE_LIST)
 	$(MAKE) -f $(MAKEFILENAME) CVER=$(CVER) $(PREFIX)/bin/$(TARGET)-ld
 
 

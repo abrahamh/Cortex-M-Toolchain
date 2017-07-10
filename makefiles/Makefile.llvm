@@ -1,13 +1,38 @@
 #
 # Makefile - create llvm/clang
-# Copyright (C) 2015-2016 Heiko Abraham
+# Copyright (C) 2015-2017 Heiko Abraham
 # All rights reserved.
 #
 
 include Makefile.def
 
-TARGET=arm-none-eabi
 
+TARGET=arm-none-eabi
+COMPILER_RT_SRC=$(COMPILER_RT_VERSION).src/lib/builtins/
+
+
+COMPILER_RT_FILES_TOP=assembly.h \
+	fp_lib.h \
+	int_endianness.h \
+	int_lib.h \
+	int_types.h \
+	int_util.h
+
+	
+COMPILER_RT_FILES_ARM=arm/aeabi_memcpy.S \
+	arm/divmodsi4.S \
+	arm/udivmodsi4.S \
+	arm/aeabi_dcmp.S \
+	arm/aeabi_div0.c \
+	arm/aeabi_drsub.c \
+	arm/aeabi_fcmp.S \
+	arm/aeabi_frsub.c \
+	arm/aeabi_idivmod.S \
+	arm/aeabi_ldivmod.S \
+	arm/aeabi_uidivmod.S \
+	arm/aeabi_uldivmod.S
+	
+	
 .PHONY: build
 build:
 	$(MAKE) -f $(MAKEFILENAME) $(PREFIX)/bin/$(TARGET)-clang
@@ -43,12 +68,10 @@ extract_lldb:
 	( cd $(BUILD_DIR)/$(LLVM_VERSION).src/tools/ && $(RM) -rf $(LLDB_VERSION).src )
 	tar -xJf $(DOWNLOAD_DIR)/$(LLDB_VERSION).tar.xz -C $(BUILD_DIR)/$(LLVM_VERSION).src/tools/
 	( cd $(BUILD_DIR)/$(LLVM_VERSION).src/tools && mv $(LLDB_VERSION).src lldb )
-	# patch remove-debug-server
 
 
 .PHONY: build_clang
 build_clang: $(BUILD_DIR)
-	env
 	$(RM) -rf    $(BUILD_DIR)/$(LLVM_VERSION)
 	$(RM) -rf    $(BUILD_DIR)/$(LLVM_VERSION).src
 	$(RM) -rf    $(BUILD_DIR)/$(LLVM_VERSION).build
@@ -60,12 +83,10 @@ build_clang: $(BUILD_DIR)
 		$(PATH_EXT) cmake ../$(LLVM_VERSION).src \
 		-G "Unix Makefiles" \
 		-DCMAKE_BUILD_TYPE=Release \
-		-DCMAKE_INSTALL_PREFIX=$(PREFIX) \
-		-DCMAKE_PREFIX_PATH=$(PREFIX)/prefix_path \
+		-DCMAKE_INSTALL_PREFIX:PATH=$(PREFIX) \
 		-DCMAKE_CROSSCOMPILING=True \
 		-DLLVM_TARGETS_TO_BUILD=ARM \
 		-DLLVM_DEFAULT_TARGET_TRIPLE=$(TARGET) \
-		-DCMAKE_PROGRAM_PREFIX=$(TARGET)- \
 		-DLLVM_TARGET_ARCH=host \
 		-DLLVM_ENABLE_PIC=True \
 		-DLLVM_ENABLE_THREADS=ON \
@@ -74,12 +95,8 @@ build_clang: $(BUILD_DIR)
 		-DLLVM_BUILD_DOCS=Off \
 		-DLLVM_BUILD_LLVM_DYLIB=ON \
 		-DLLVM_LINK_LLVM_DYLIB=ON \
-		-DLLVM_CREATE_XCODE_TOOLCHAIN:BOOL=OFF \
 		-DLLVM_OPTIMIZED_TABLEGEN:BOOL=ON \
-		-DLLVM_PARALLEL_COMPILE_JOBS:STRING=$(NUM_CPUS) \
-		-DLLDB_DISABLE_LIBEDIT=1 \
-		-DLLDB_DISABLE_CURSES=1 \
-		-DLLDB_DISABLE_PYTHON=1 )
+		-DLLVM_PARALLEL_COMPILE_JOBS:STRING=$(NUM_CPUS) )
 	( cd $(BUILD_DIR)/$(LLVM_VERSION).build && \
 		$(PATH_EXT) time make $(MJOBS) )
 	( cd $(BUILD_DIR)/$(LLVM_VERSION).build && \
@@ -88,4 +105,33 @@ build_clang: $(BUILD_DIR)
 	( cd $(PREFIX)/bin && mv clang++ $(TARGET)-clang++ )
 	$(MKDIR) -p $(PREFIX)/local/include
 	( cd $(PREFIX)/lib/clang && ln -s $(LLVM_VERSION_NO) current )
+	$(MAKE) -f $(MAKEFILENAME) compiler_rt
+	$(MAKE) -f $(MAKEFILENAME) pack_clang
 
+
+.PHONY: pack_clang
+pack_clang: 
+	rm -f ../arm_cortex_m_toolchain_$(CVER).tar.gz
+	( cd $(BUILD_DIR) && rm -rf $(BINUTIL_VERSION) )
+	( cd $(BUILD_DIR) && rm -rf $(CMAKE_VERSION) )
+	( cd $(BUILD_DIR) && rm -rf $(LLVM_VERSION).build )
+	( cd $(BUILD_DIR) && rm -rf $(LLVM_VERSION).src )
+	( cd $(BUILD_DIR) && rm -rf usr-host )
+	( cd $(BUILD_DIR) && tar -f ../arm_cortex_m_toolchain_$(CVER).tar.gz -cpz . )
+
+
+# add compiler_rt for Cortex-M3/M4
+compiler_rt:
+	$(MKDIR) -p $(PREFIX)/share/compiler_rt/arm
+	echo "origin source for this directory, LLVM $(COMPILER_RT_VERSION)" \
+		> $(PREFIX)/share/compiler_rt/arm/readme.txt
+	rm -rf temp_compiler_rt
+	$(MKDIR) temp_compiler_rt
+	tar -xJf $(DOWNLOAD_DIR)/$(COMPILER_RT_VERSION).tar.xz -C temp_compiler_rt	
+	for filename in $(COMPILER_RT_FILES_TOP) ; do \
+	    cp temp_compiler_rt/$(COMPILER_RT_SRC)/$${filename} $(PREFIX)/share/compiler_rt/ ;\
+	done
+	for filename in $(COMPILER_RT_FILES_ARM) ; do \
+	    cp temp_compiler_rt/$(COMPILER_RT_SRC)/$${filename} $(PREFIX)/share/compiler_rt/$${filename} ;\
+	done  
+	rm -rf temp_compiler_rt

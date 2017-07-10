@@ -1,19 +1,19 @@
 #
 # Makefile - download required source if required
-# Copyright (C) 2015-2016 Heiko Abraham
+# Copyright (C) 2015-2017 Heiko Abraham
 # All rights reserved.
 #
 
 include Makefile.def
 
-ifneq ($(MK_PROXY_HTTP),)
-  PROXY_SETTINGS_HTTP:=http_proxy=$(MK_PROXY_HTTP)
+ifneq ($(http_proxy),)
+  PROXY_SETTINGS_HTTP:=http_proxy=$(http_proxy)
 endif
-ifneq ($(MK_PROXY_HTTPS),)
-  PROXY_SETTINGS_HTTPS:=https_proxy=$(MK_PROXY_HTTPS)
+ifneq ($(https_proxy),)
+  PROXY_SETTINGS_HTTPS:=https_proxy=$(https_proxy)
 endif
-ifneq ($(MK_PROXY_FTP),)
-  PROXY_SETTINGS_FTP:=ftp_proxy=$(MK_PROXY_FTP)
+ifneq ($(ftp_proxy),)
+  PROXY_SETTINGS_FTP:=ftp_proxy=$(ftp_proxy)
 endif
 PROXY_SETTINGS := $(PROXY_SETTINGS_HTTP) $(PROXY_SETTINGS_HTTPS) $(PROXY_SETTINGS_FTP)
 

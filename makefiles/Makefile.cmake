@@ -1,14 +1,14 @@
 #
 # Makefile - build cmake
-# Copyright (C) 2015-2016 Heiko Abraham
+# Copyright (C) 2015-2017 Heiko Abraham
 # All rights reserved.
 #
 
 include Makefile.def
 
+
 .PHONY: build
-build:
-	env
+build: $(BUILD_DIR)/ $(MAKEFILE_LIST)
 	$(MAKE) -f $(MAKEFILENAME) CVER=$(CVER) $(PREFIX_HOST)/bin/cmake
 
 
