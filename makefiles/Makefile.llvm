@@ -35,12 +35,12 @@ COMPILER_RT_FILES_ARM=arm/aeabi_memcpy.S \
 	
 .PHONY: build
 build:
-	$(MAKE) -f $(MAKEFILENAME) $(PREFIX)/bin/$(TARGET)-clang
+	$(MAKE) -f $(MAKEFILENAME) $(DEST_PREFIX)/bin/$(TARGET)-clang
 
 
 .PHONY: clean
 clean:
-	$(RM) -f $(PREFIX)/bin/$(TARGET)-clang
+	$(RM) -f     $(DEST_PREFIX)/bin/$(TARGET)-clang
 	$(RM) -rf    $(BUILD_DIR)/$(LLVM_VERSION)
 	$(RM) -rf    $(BUILD_DIR)/$(LLVM_VERSION).src
 	$(RM) -rf    $(BUILD_DIR)/$(LLVM_VERSION).build
@@ -50,7 +50,7 @@ clean:
 install:
 
 
-$(PREFIX)/bin/$(TARGET)-clang:
+$(DEST_PREFIX)/bin/$(TARGET)-clang:
 	$(MAKE) -f $(MAKEFILENAME) build_clang
 
 
@@ -83,7 +83,7 @@ build_clang: $(BUILD_DIR)
 		$(PATH_EXT) cmake ../$(LLVM_VERSION).src \
 		-G "Unix Makefiles" \
 		-DCMAKE_BUILD_TYPE=Release \
-		-DCMAKE_INSTALL_PREFIX:PATH=$(PREFIX) \
+		-DCMAKE_INSTALL_PREFIX:PATH=$(DEST_PREFIX) \
 		-DCMAKE_CROSSCOMPILING=True \
 		-DLLVM_TARGETS_TO_BUILD=ARM \
 		-DLLVM_DEFAULT_TARGET_TRIPLE=$(TARGET) \
@@ -101,10 +101,10 @@ build_clang: $(BUILD_DIR)
 		$(PATH_EXT) time make $(MJOBS) )
 	( cd $(BUILD_DIR)/$(LLVM_VERSION).build && \
 		$(PATH_EXT) time make install )
-	( cd $(PREFIX)/bin && mv clang $(TARGET)-clang )
-	( cd $(PREFIX)/bin && mv clang++ $(TARGET)-clang++ )
-	$(MKDIR) -p $(PREFIX)/local/include
-	( cd $(PREFIX)/lib/clang && ln -s $(LLVM_VERSION_NO) current )
+	( cd $(DEST_PREFIX)/bin && ln -s clang $(TARGET)-clang )
+	( cd $(DEST_PREFIX)/bin && ln -s clang++ $(TARGET)-clang++ )
+	$(MKDIR) -p $(DEST_PREFIX)/local/include
+	( cd $(DEST_PREFIX)/lib/clang && ln -s $(LLVM_VERSION_NO) current )
 	$(MAKE) -f $(MAKEFILENAME) compiler_rt
 	$(MAKE) -f $(MAKEFILENAME) pack_clang
 
