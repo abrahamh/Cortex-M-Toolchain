@@ -4,13 +4,22 @@
 # All rights reserved.
 #
 
-
 .PHONY: all
 all:
 	( cd makefiles && make -f Makefile.dl )
 	( cd makefiles && make -f Makefile.binutils )
 	( cd makefiles && make -f Makefile.cmake )
 	( cd makefiles && make -f Makefile.llvm )
+
+
+.PHONY: install
+install:
+	( cd makefiles && make -f Makefile.llvm install )
+
+
+.PHONY: uninstall
+uninstall:
+	( cd makefiles && make -f Makefile.llvm uninstall )
 
 
 .PHONY: clean

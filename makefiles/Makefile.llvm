@@ -35,12 +35,11 @@ COMPILER_RT_FILES_ARM=arm/aeabi_memcpy.S \
 	
 .PHONY: build
 build:
-	$(MAKE) -f $(MAKEFILENAME) $(DEST_PREFIX)/bin/$(TARGET)-clang
+	$(MAKE) -f $(MAKEFILENAME) build_clang
 
 
 .PHONY: clean
 clean:
-	$(RM) -f     $(DEST_PREFIX)/bin/$(TARGET)-clang
 	$(RM) -rf    $(BUILD_DIR)/$(LLVM_VERSION)
 	$(RM) -rf    $(BUILD_DIR)/$(LLVM_VERSION).src
 	$(RM) -rf    $(BUILD_DIR)/$(LLVM_VERSION).build
@@ -48,11 +47,21 @@ clean:
 
 .PHONY: install
 install:
+	( cd $(BUILD_DIR)/$(LLVM_VERSION).build && \
+		$(PATH_EXT) time make install )
+	( cd $(DEST_PREFIX)/bin && ln -s clang $(TARGET)-clang )
+	( cd $(DEST_PREFIX)/bin && ln -s clang++ $(TARGET)-clang++ )
+	$(MKDIR) -p $(DEST_PREFIX)/local/include
+	( cd $(DEST_PREFIX)/lib/clang && ln -s $(LLVM_VERSION_NO) current )
+	$(MAKE) -f $(MAKEFILENAME) compiler_rt
+	$(MAKE) -f $(MAKEFILENAME) pack_clang
 
-
-$(DEST_PREFIX)/bin/$(TARGET)-clang:
-	$(MAKE) -f $(MAKEFILENAME) build_clang
-
+.PHONY: uninstall
+uninstall:
+	( cd $(DEST_PREFIX)/bin && $(RM) -f clang $(TARGET)-clang )
+	( cd $(DEST_PREFIX)/bin && $(RM) -f clang++ $(TARGET)-clang++ )
+	$(RM) -rf $(DEST_PREFIX)/local/include
+	$(RM) -rf $(DEST_PREFIX)/lib/clang
 
 .PHONY: extract_clang
 extract_clang:
@@ -99,14 +108,6 @@ build_clang: $(BUILD_DIR)
 		-DLLVM_PARALLEL_COMPILE_JOBS:STRING=$(NUM_CPUS) )
 	( cd $(BUILD_DIR)/$(LLVM_VERSION).build && \
 		$(PATH_EXT) time make $(MJOBS) )
-	( cd $(BUILD_DIR)/$(LLVM_VERSION).build && \
-		$(PATH_EXT) time make install )
-	( cd $(DEST_PREFIX)/bin && ln -s clang $(TARGET)-clang )
-	( cd $(DEST_PREFIX)/bin && ln -s clang++ $(TARGET)-clang++ )
-	$(MKDIR) -p $(DEST_PREFIX)/local/include
-	( cd $(DEST_PREFIX)/lib/clang && ln -s $(LLVM_VERSION_NO) current )
-	$(MAKE) -f $(MAKEFILENAME) compiler_rt
-	$(MAKE) -f $(MAKEFILENAME) pack_clang
 
 
 .PHONY: pack_clang
