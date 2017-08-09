@@ -36,7 +36,7 @@ build_binutils: $(BUILD_DIR)
 	( cd $(BUILD_DIR)/$(BINUTIL_VERSION)  &&  CFLAGS="-w " \
 	./configure \
 		--target=$(TARGET) \
-		--prefix=$(DEST_PREFIX) \
+		--prefix=$(PREFIX) \
 		--disable-shared \
 		--disable-werror \
 		--disable-nls \
