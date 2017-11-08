@@ -43,9 +43,7 @@ build_binutils: $(BUILD_DIR)
 		--disable-threads \
 		--enable-interwork \
 		--enable-multilib \
-		--enable-lto \
-		--with-local-prefix=$(SYSROOT_PREFIX)/$(TARGET) \
-		--with-sysroot=$(SYSROOT_PREFIX)/$(TARGET)  )
+		--enable-lto )
 	( cd $(BUILD_DIR)/$(BINUTIL_VERSION)  && $(MAKE) $(MJOBS) )
 	( cd $(BUILD_DIR)/$(BINUTIL_VERSION)  && $(MAKE) install )
 
