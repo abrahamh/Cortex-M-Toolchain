@@ -49,10 +49,10 @@ clean:
 install:
 	( cd $(BUILD_DIR)/$(LLVM_VERSION).build && \
 		$(PATH_EXT) time make install )
-	( cd $(DEST_PREFIX)/bin && ln -s clang $(TARGET)-clang )
-	( cd $(DEST_PREFIX)/bin && ln -s clang++ $(TARGET)-clang++ )
+	( cd $(DEST_PREFIX)/bin && ln -sf clang $(TARGET)-clang )
+	( cd $(DEST_PREFIX)/bin && ln -sf clang++ $(TARGET)-clang++ )
 	$(MKDIR) -p $(DEST_PREFIX)/local/include
-	( cd $(DEST_PREFIX)/lib/clang && ln -s $(LLVM_VERSION_NO) current )
+	( cd $(DEST_PREFIX)/lib/clang && ln -sf $(LLVM_VERSION_NO) current )
 	$(MAKE) -f $(MAKEFILENAME) compiler_rt
 	$(MAKE) -f $(MAKEFILENAME) pack_clang
 
