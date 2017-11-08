@@ -40,6 +40,7 @@ download:
 help:
 	@echo "Makefile to build llvm as cross compiler for ARM Cortex-M"
 	@echo " "
-	@echo "make [INST_PREFIX=/path]  - build cross compiler"
-	@echo "make clean                - clean object files"
-	@echo "make download             - download llvm/binutils source if required"
+	@echo "make [INST_PREFIX=/path]             - build cross compiler"
+	@echo "make [INST_PREFIX=/path] (un)install - (un)install cross compiler"
+	@echo "make clean                           - clean object files"
+	@echo "make download                        - download llvm/binutils source if required"
