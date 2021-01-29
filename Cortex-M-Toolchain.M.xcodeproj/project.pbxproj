@@ -12,6 +12,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		07D13DC625AE1CE300365CF1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4272BD001D6A55730066C2EC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 427CCE9F1D718E6A00D2C716;
+			remoteInfo = llvm;
+		};
+		07DA7D6D25ACE215000A079F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4272BD001D6A55730066C2EC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 427CCE9F1D718E6A00D2C716;
+			remoteInfo = llvm;
+		};
 		42600DE41D7C5DCA0093864F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4272BD001D6A55730066C2EC /* Project object */;
@@ -345,6 +359,7 @@
 			buildToolPath = /usr/bin/make;
 			buildWorkingDirectory = makefiles;
 			dependencies = (
+				07DA7D6E25ACE215000A079F /* PBXTargetDependency */,
 				42B8DC461DEF79C80036C0E3 /* PBXTargetDependency */,
 				42D27C421D7CC5D000CFAFDB /* PBXTargetDependency */,
 			);
@@ -354,7 +369,7 @@
 		};
 		427C84691D70DAF500613D42 /* cmake */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "-f Makefile.cmake $(ACTION) CVER=$(CTOOLCHAIN_VERSION)";
+			buildArgumentsString = "-f Makefile.cmake $(ACTION) CVER=$(CTOOLCHAIN_VERSION) CC=clang";
 			buildConfigurationList = 427C846A1D70DAF500613D42 /* Build configuration list for PBXLegacyTarget "cmake" */;
 			buildPhases = (
 			);
@@ -364,7 +379,7 @@
 				427C846E1D70DAFE00613D42 /* PBXTargetDependency */,
 			);
 			name = cmake;
-			passBuildSettingsInEnvironment = 0;
+			passBuildSettingsInEnvironment = 1;
 			productName = cmake;
 		};
 		427C84701D70E6E600613D42 /* binutils */ = {
@@ -460,7 +475,7 @@
 				427E7DCB1E00A6C300DBB2FB /* PBXTargetDependency */,
 			);
 			name = "install-toolchain";
-			passBuildSettingsInEnvironment = 0;
+			passBuildSettingsInEnvironment = 1;
 			productName = "install-toolchain";
 		};
 /* End PBXLegacyTarget section */
@@ -477,6 +492,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				07D13DC725AE1CE300365CF1 /* PBXTargetDependency */,
 			);
 			name = "clang-args";
 			productName = "clang-args";
@@ -507,7 +523,7 @@
 		4272BD001D6A55730066C2EC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 1230;
 				TargetAttributes = {
 					42600DE01D7C5A380093864F = {
 						CreatedOnToolsVersion = 8.0;
@@ -548,10 +564,11 @@
 			};
 			buildConfigurationList = 4272BD031D6A55730066C2EC /* Build configuration list for PBXProject "Cortex-M-Toolchain.M" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 4272BCFF1D6A55730066C2EC;
 			productRefGroup = 42600DEB1D7C67500093864F /* Products */;
@@ -592,6 +609,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		07D13DC725AE1CE300365CF1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 427CCE9F1D718E6A00D2C716 /* llvm */;
+			targetProxy = 07D13DC625AE1CE300365CF1 /* PBXContainerItemProxy */;
+		};
+		07DA7D6E25ACE215000A079F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 427CCE9F1D718E6A00D2C716 /* llvm */;
+			targetProxy = 07DA7D6D25ACE215000A079F /* PBXContainerItemProxy */;
+		};
 		42600DE51D7C5DCA0093864F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 42600DE01D7C5A380093864F /* plist */;
@@ -856,16 +883,26 @@
 		4272BD041D6A55730066C2EC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CTOOLCHAIN_VERSION = 1.8.2;
+				CTOOLCHAIN_VERSION = 6.0.1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -882,16 +919,26 @@
 		4272BD051D6A55730066C2EC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CTOOLCHAIN_VERSION = 1.8.2;
+				CTOOLCHAIN_VERSION = 6.0.1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1313,7 +1360,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CTOOLCHAIN_VERSION = 1.8.3;
 				DEBUGGING_SYMBOLS = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1364,7 +1410,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CTOOLCHAIN_VERSION = 1.8.3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

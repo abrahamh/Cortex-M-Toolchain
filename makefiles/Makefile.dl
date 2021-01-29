@@ -1,6 +1,6 @@
 #
 # Makefile - download required source if required
-# Copyright (C) 2015-2016 Heiko Abraham
+# Copyright (C) 2015-2021 Heiko Abraham
 # All rights reserved.
 #
 
@@ -28,7 +28,6 @@ build: $(DOWNLOAD_DIR)/
 	$(MAKE) -f $(MAKEFILENAME) $(DOWNLOAD_DIR)/$(LLVM_VERSION).tar.xz
 	$(MAKE) -f $(MAKEFILENAME) $(DOWNLOAD_DIR)/$(CLANG_VERSION).tar.xz
 	$(MAKE) -f $(MAKEFILENAME) $(DOWNLOAD_DIR)/$(COMPILER_RT_VERSION).tar.xz
-	$(MAKE) -f $(MAKEFILENAME) $(DOWNLOAD_DIR)/$(LLDB_VERSION).tar.xz
 
 
 .PHONY: clean
@@ -49,21 +48,21 @@ $(DOWNLOAD_DIR)/$(BINUTIL_VERSION).tar.bz2:
 	mv $(DOWNLOAD_DIR)/tempfile $@
 
 $(DOWNLOAD_DIR)/$(CMAKE_VERSION).tar.gz:
-	$(DOWNLOAD_CMD)  https://cmake.org/files/v3.5/$(CMAKE_VERSION).tar.gz
+	$(DOWNLOAD_CMD)  https://cmake.org/files/$(CMAKE_VERSION_MAJOR)/$(CMAKE_VERSION).tar.gz
 	mv $(DOWNLOAD_DIR)/tempfile $@
 
 $(DOWNLOAD_DIR)/$(LLVM_VERSION).tar.xz:
 	$(DOWNLOAD_CMD) http://llvm.org/releases/$(LLVM_VERSION_NO)/$(LLVM_VERSION).src.tar.xz
+	# $(DOWNLOAD_CMD) https://github.com/llvm/llvm-project/releases/$(LLVM_DOWNLOAD_PREFIX)$(LLVM_VERSION_NO)/$(LLVM_VERSION).src.tar.xz
 	mv $(DOWNLOAD_DIR)/tempfile $@
 
 $(DOWNLOAD_DIR)/$(CLANG_VERSION).tar.xz:
 	$(DOWNLOAD_CMD) http://llvm.org/releases/$(LLVM_VERSION_NO)/$(CLANG_VERSION).src.tar.xz
+	# $(DOWNLOAD_CMD) https://github.com/llvm/llvm-project/releases/$(LLVM_DOWNLOAD_PREFIX)$(LLVM_VERSION_NO)/$(CLANG_VERSION).src.tar.xz
 	mv $(DOWNLOAD_DIR)/tempfile $@
 
 $(DOWNLOAD_DIR)/$(COMPILER_RT_VERSION).tar.xz:
 	$(DOWNLOAD_CMD) http://llvm.org/releases/$(LLVM_VERSION_NO)/$(COMPILER_RT_VERSION).src.tar.xz
+	# $(DOWNLOAD_CMD) https://github.com/llvm/llvm-project/releases/$(LLVM_DOWNLOAD_PREFIX)$(LLVM_VERSION_NO)/$(COMPILER_RT_VERSION).src.tar.xz
 	mv $(DOWNLOAD_DIR)/tempfile $@
 
-$(DOWNLOAD_DIR)/$(LLDB_VERSION).tar.xz:
-	$(DOWNLOAD_CMD) http://llvm.org/releases/$(LLVM_VERSION_NO)/$(LLDB_VERSION).src.tar.xz
-	mv $(DOWNLOAD_DIR)/tempfile $@

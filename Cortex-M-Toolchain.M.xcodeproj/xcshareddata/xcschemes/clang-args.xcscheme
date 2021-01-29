@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0800"
+   LastUpgradeVersion = "1230"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -27,8 +27,6 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <Testables>
-      </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
@@ -38,8 +36,8 @@
             ReferencedContainer = "container:Cortex-M-Toolchain.M.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
+      <Testables>
+      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -61,8 +59,28 @@
             ReferencedContainer = "container:Cortex-M-Toolchain.M.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <AdditionalOptions>
-      </AdditionalOptions>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "-filelist /Users/ha/Library/Developer/Xcode/DerivedData/fa_diva-gaeehnesfoxxohcttfzxxyuhlpoe/Build/Intermediates.noindex/fa_diva.build/Debug/iperf.k64.build/Objects-normal/armv7em/iperf.k64.LinkFileList "
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-o /Users/ha/Library/Developer/Xcode/DerivedData/fa_diva-gaeehnesfoxxohcttfzxxyuhlpoe/Build/Products/Debug/iperf.k64.elf"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = " -dynamiclib"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = " -dependency_info -Xlinker /Users/ha/Library/Developer/Xcode/DerivedData/fa_diva-gaeehnesfoxxohcttfzxxyuhlpoe/Build/Intermediates.noindex/fa_diva.build/Debug/iperf.k64.build/Objects-normal/armv7em/iperf.k64_dependency_info.dat"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = " -Xlinker"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
