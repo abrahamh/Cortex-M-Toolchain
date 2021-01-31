@@ -12,14 +12,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		07D13DC625AE1CE300365CF1 /* PBXContainerItemProxy */ = {
+		170CFA2525C40EB4000B90ED /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4272BD001D6A55730066C2EC /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 427CCE9F1D718E6A00D2C716;
-			remoteInfo = llvm;
+			remoteGlobalIDString = 427C84701D70E6E600613D42;
+			remoteInfo = binutils;
 		};
-		07DA7D6D25ACE215000A079F /* PBXContainerItemProxy */ = {
+		170CFA3B25C423E4000B90ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4272BD001D6A55730066C2EC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 429702BD1DEF771500D8C4BC;
+			remoteInfo = libtool;
+		};
+		170CFA3F25C42485000B90ED /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4272BD001D6A55730066C2EC /* Project object */;
 			proxyType = 1;
@@ -103,13 +110,6 @@
 			remoteGlobalIDString = 427CCE9F1D718E6A00D2C716;
 			remoteInfo = llvm;
 		};
-		42B8DC451DEF79C80036C0E3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4272BD001D6A55730066C2EC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 429702BD1DEF771500D8C4BC;
-			remoteInfo = libtool;
-		};
 		42B8DC471DEF79E10036C0E3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4272BD001D6A55730066C2EC /* Project object */;
@@ -123,13 +123,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 429702BD1DEF771500D8C4BC;
 			remoteInfo = libtool;
-		};
-		42B8DC4B1DEF79FC0036C0E3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4272BD001D6A55730066C2EC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 427CCE9F1D718E6A00D2C716;
-			remoteInfo = llvm;
 		};
 		42D27C411D7CC5D000CFAFDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -359,8 +352,8 @@
 			buildToolPath = /usr/bin/make;
 			buildWorkingDirectory = makefiles;
 			dependencies = (
-				07DA7D6E25ACE215000A079F /* PBXTargetDependency */,
-				42B8DC461DEF79C80036C0E3 /* PBXTargetDependency */,
+				170CFA4025C42485000B90ED /* PBXTargetDependency */,
+				170CFA3C25C423E4000B90ED /* PBXTargetDependency */,
 				42D27C421D7CC5D000CFAFDB /* PBXTargetDependency */,
 			);
 			name = plist;
@@ -376,6 +369,7 @@
 			buildToolPath = /usr/bin/make;
 			buildWorkingDirectory = makefiles;
 			dependencies = (
+				170CFA2625C40EB4000B90ED /* PBXTargetDependency */,
 				427C846E1D70DAFE00613D42 /* PBXTargetDependency */,
 			);
 			name = cmake;
@@ -492,7 +486,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				07D13DC725AE1CE300365CF1 /* PBXTargetDependency */,
 			);
 			name = "clang-args";
 			productName = "clang-args";
@@ -510,7 +503,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				42B8DC4C1DEF79FC0036C0E3 /* PBXTargetDependency */,
 			);
 			name = libtool;
 			productName = libtool;
@@ -609,15 +601,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		07D13DC725AE1CE300365CF1 /* PBXTargetDependency */ = {
+		170CFA2625C40EB4000B90ED /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 427CCE9F1D718E6A00D2C716 /* llvm */;
-			targetProxy = 07D13DC625AE1CE300365CF1 /* PBXContainerItemProxy */;
+			target = 427C84701D70E6E600613D42 /* binutils */;
+			targetProxy = 170CFA2525C40EB4000B90ED /* PBXContainerItemProxy */;
 		};
-		07DA7D6E25ACE215000A079F /* PBXTargetDependency */ = {
+		170CFA3C25C423E4000B90ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 429702BD1DEF771500D8C4BC /* libtool */;
+			targetProxy = 170CFA3B25C423E4000B90ED /* PBXContainerItemProxy */;
+		};
+		170CFA4025C42485000B90ED /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 427CCE9F1D718E6A00D2C716 /* llvm */;
-			targetProxy = 07DA7D6D25ACE215000A079F /* PBXContainerItemProxy */;
+			targetProxy = 170CFA3F25C42485000B90ED /* PBXContainerItemProxy */;
 		};
 		42600DE51D7C5DCA0093864F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -674,11 +671,6 @@
 			target = 427CCE9F1D718E6A00D2C716 /* llvm */;
 			targetProxy = 42879AF31D78C48E0013320B /* PBXContainerItemProxy */;
 		};
-		42B8DC461DEF79C80036C0E3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 429702BD1DEF771500D8C4BC /* libtool */;
-			targetProxy = 42B8DC451DEF79C80036C0E3 /* PBXContainerItemProxy */;
-		};
 		42B8DC481DEF79E10036C0E3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 42600DE91D7C67500093864F /* clang-args */;
@@ -688,11 +680,6 @@
 			isa = PBXTargetDependency;
 			target = 429702BD1DEF771500D8C4BC /* libtool */;
 			targetProxy = 42B8DC491DEF79E50036C0E3 /* PBXContainerItemProxy */;
-		};
-		42B8DC4C1DEF79FC0036C0E3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 427CCE9F1D718E6A00D2C716 /* llvm */;
-			targetProxy = 42B8DC4B1DEF79FC0036C0E3 /* PBXContainerItemProxy */;
 		};
 		42D27C421D7CC5D000CFAFDB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
